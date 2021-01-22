@@ -1,5 +1,8 @@
 # Marching Squares luolastogeneraattori
 
-##Dokumentaatio
+## Dokumentaatio
 
 Määrittelydokumentti
+
+Viikkoraportit
+  - Viikkoraportti 1
