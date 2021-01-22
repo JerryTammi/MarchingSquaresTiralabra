@@ -1,1 +1,5 @@
-# MarchingSquaresTiralabra
+# Marching Squares luolastogeneraattori
+
+##Dokumentaatio
+
+Määrittelydokumentti
