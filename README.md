@@ -6,7 +6,7 @@
 
 Totetusdokumentti
 
-Testausdokumnetti
+Testausdokumentti
 
 Käyttöohje
 
