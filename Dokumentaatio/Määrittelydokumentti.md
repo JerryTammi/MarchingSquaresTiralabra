@@ -12,6 +12,8 @@ Algoritmin idea on jakaa ruutu samankokoisiin neliöihin, jossa jokaisen neliön
 
 ![Marching squares](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Kuvat/ms2.JPG)
 
+Tavoitteena myös olisi että luolaa voisi vielä muokata generoimisen jälkeen joko satunnaisesti muuttamalla koko luola tai eri osaalueita.
+
 Lähteet:
  - https://en.wikipedia.org/wiki/Marching_squares
  - https://www.youtube.com/watch?v=0ZONMNUKTfU
