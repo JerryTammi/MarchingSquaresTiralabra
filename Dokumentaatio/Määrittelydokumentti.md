@@ -8,7 +8,9 @@ Opinto-ohjelma: Kemian kandiohjelma
 
 ## Marching squares
 
-Algoritmin idea on jakaa ruutu samankokoisiin neliöihin, jossa jokaisen neliön reunassa on solu jonka arvo on 1 tai 0. 
+Algoritmin idea on jakaa ruutu samankokoisiin neliöihin, jossa jokaisen neliön reunassa on solu jonka arvo on 1 tai 0. Erilaisia ruutuja on 16 ja yhdistämällä niitä tiettyjen ehtojen mukaan ideana on generoida yhtenäinen luola. 
+
+![Marching squares](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Kuvat/ms2.JPG)
 
 Lähteet:
  - https://en.wikipedia.org/wiki/Marching_squares
