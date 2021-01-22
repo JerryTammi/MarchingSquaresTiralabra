@@ -1,10 +1,14 @@
-## Määrittelydokumentti
+# Määrittelydokumentti
 
-Työn idea on generoida erilaisia 2D-luolia käyttäen Marching Squares -algoritmia. Ohjelmalle joko annetaan erilaisia parametrejä joiden avulla se generoi uuden luolan tai antaa ohjelman valita satunnaisesti lopputuloksen. Ohjelmalle annettavat parametrit määrittävät kuinka vaikeakulkuista/satunnasita maasto tulee olemaan. Jos riittää aikaa, ohjelmassa tulee olemaan pieni hahmo jota voi liikuttaa luolan sisällä. Aikavaativuuden tavoitteeksi tulee olemaan O(n^2).
+Työn idea on generoida erilaisia 2D-luolia käyttäen Marching squares -algoritmia. Ohjelmalle joko annetaan erilaisia parametrejä joiden avulla se generoi uuden luolan tai antaa ohjelman valita satunnaisesti lopputuloksen. Ohjelmalle annettavat parametrit määrittävät kuinka vaikeakulkuista/satunnasita maasto tulee olemaan. Jos riittää aikaa, ohjelmassa tulee olemaan pieni hahmo jota voi liikuttaa luolan sisällä. Aikavaativuuden tavoitteeksi tulee olemaan O(n^2).
 
 Työ ohjelmoidaan javalla ja kieli tulee olemaan suomi.
 
 Opinto-ohjelma: Kemian kandiohjelma
+
+## Marching squares
+
+Algoritmin idea on jakaa ruutu samankokoisiin neliöihin, jossa jokaisen neliön reunassa on solu jonka arvo on 1 tai 0. 
 
 Lähteet:
  - https://en.wikipedia.org/wiki/Marching_squares
