@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tiralabra</groupId>
-    <artifactId>MarchingSquaresLuola</artifactId>
+    <artifactId>MarchingSquaresTiralabra</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>MarchingSquaresLuola</name>
+    <name>MarchingSquaresTiralabra</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>tiralabra.MainApp</mainClass>
+        <mainClass>tiralabra.Main</mainClass>
     </properties>
 
     <organization>
