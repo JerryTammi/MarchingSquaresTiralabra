@@ -8,6 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
+/**
+ *
+ * Luokka generoi luolan annetusta taulukosta käyttäen Marching squares -algoritmia
+ */
 public class Luola {
     Pane ikkuna;
     int leveys;
@@ -15,6 +19,12 @@ public class Luola {
     int vali;
     int[][]pisteet;
     
+    /**
+     *
+     * @param leveys Ikkunan leveys
+     * @param korkeus Ikkunan korkeus
+     * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
+     */
     public Luola(int leveys, int korkeus, int vali) {
         ikkuna = new Pane();
         ikkuna.setBackground(Background.EMPTY);
@@ -22,25 +32,43 @@ public class Luola {
         this.korkeus = korkeus;
         this.vali = vali;
         this.pisteet = new int[(korkeus/vali)+1][(leveys/vali)+1];
-        
     }
     
+    /**
+     *
+     * @return Palauttaa valmiin panen ohjelmaa varten.
+     */
     public Pane haePane() {
         return ikkuna;
     }
     
+    /**
+     *
+     * @return Palauttaa ikkunan leveyden.
+     */
     public int haeLeveys() {
         return leveys;
     }
     
+    /**
+     *
+     * @return Palauttaa ikkunan korkeuden.
+     */
     public int haeKorkeus() {
         return korkeus;
     }
     
+    /**
+     *
+     * @return Palauttaa pisteiden välin etäisyyden.
+     */
     public int haeVali() {
         return vali;
     }
     
+    /**
+     * Metodi luo taulukon, jonka avulla se generoi luolan.
+     */
     public void luoTaulukko() {
         Random r = new Random();
         for(int i = 0; i < pisteet.length; i++) {
@@ -51,6 +79,10 @@ public class Luola {
         }
     }
     
+    /**
+     * Lisää pisteet paneen. Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä. Tällä hetkellä
+     * auttaa visualisoimaan algoritmia.
+     */
     public void lisaaPisteet() {
         for(int i = 0; i < pisteet.length; i++) {
             for(int j = 0; j < pisteet.length; j++) {
@@ -66,6 +98,12 @@ public class Luola {
         }
     }
     
+    /**
+     * 
+     * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
+     * numeroksi. Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
+     * lopuksi lisää sen paneen.
+     */
     public void lisaaViivat() {
         for(int i = 0; i < pisteet.length-1; i++) {
             for(int j = 0; j < pisteet.length-1; j++) {
@@ -78,17 +116,32 @@ public class Luola {
                 int x = j * vali;
                 int y = i * vali;
                 
-                lisaaVektori(binaariMuuntaminen(binaariNumero), x, y, ikkuna);
+                luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna);
             }
         }
     }
     
+    /**
+     * Metodi luo viivan annetun tiedon perusteella ja lisää sen paneen. 
+     * 
+     * @param luku Binaarinumero, joka on generoitu pisteet -taulukon sisällöstä riippuen missä kohtaa
+     * ollaan. Esimerkiksi "1111" tai "1011"
+     * @return Tavallinen numero, joka vastaa binäärinumeroa. Esimerkiksi "1111" muuttuu 15.
+     */
     public int binaariMuuntaminen(String luku) {
         return (luku.charAt(0) - '0') * 8 + (luku.charAt(1) - '0') * 4 
                + (luku.charAt(2) - '0') * 2 + (luku.charAt(3) - '0');
     }
     
-    public void lisaaVektori(int luku, int x, int y, Pane p) {
+    /**
+     * 
+     * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään vektorin
+     * generoimisessa.
+     * @param x Piste x ikkunassa.
+     * @param y Piste y ikkunassa.
+     * @param p Pane johon viivat sijoitetaan.
+     */
+    public void luoViiva(int luku, int x, int y, Pane p) {
         if(luku < 1) {
             return;
         }

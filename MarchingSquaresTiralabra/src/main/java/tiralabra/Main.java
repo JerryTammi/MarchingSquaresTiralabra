@@ -12,9 +12,11 @@ public class Main extends Application {
     public void start(Stage stage) {
         stage.setTitle("Marching squares");
         
+        
+        
         Luola luola = new Luola(1000, 1000, 20);
         luola.luoTaulukko();
-//        luola.lisaaPisteet();
+        luola.lisaaPisteet();
         luola.lisaaViivat();
         
         Scene scene = new Scene(luola.haePane(), luola.haeLeveys(), luola.haeKorkeus());
