@@ -1,5 +1,4 @@
-
-package tiralabra.LuolaGeneraattori;
+package tiralabra.luola;
 
 import java.util.Random;
 import javafx.scene.layout.Background;
@@ -31,7 +30,7 @@ public class Luola {
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.vali = vali;
-        this.pisteet = new int[(korkeus/vali)+1][(leveys/vali)+1];
+        this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
     }
     
     /**
@@ -72,8 +71,8 @@ public class Luola {
      */
     public void luoTaulukko() {
         Random r = new Random();
-        for(int i = 0; i < pisteet.length; i++) {
-            for(int j = 0; j < pisteet.length; j++) {
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet.length; j++) {
                 int randomnumero = r.nextInt(2);
                 pisteet[i][j] = randomnumero;
             }
@@ -85,13 +84,12 @@ public class Luola {
      * auttaa visualisoimaan algoritmia.
      */
     public void lisaaPisteet() {
-        for(int i = 0; i < pisteet.length; i++) {
-            for(int j = 0; j < pisteet.length; j++) {
-                Circle c = new Circle (j * vali, i * vali, 3);
-                if(pisteet[i][j] == 0) {
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet.length; j++) {
+                Circle c = new Circle(j * vali, i * vali, 3);
+                if (pisteet[i][j] == 0) {
                     c.setFill(Color.BLACK);
-                }
-                else {
+                } else {
                     c.setFill(Color.WHITE);
                 }
                 ikkuna.getChildren().add(c);
@@ -106,8 +104,8 @@ public class Luola {
      * lopuksi lisää sen paneen.
      */
     public void lisaaViivat() {
-        for(int i = 0; i < pisteet.length-1; i++) {
-            for(int j = 0; j < pisteet.length-1; j++) {
+        for (int i = 0; i < pisteet.length - 1; i++) {
+            for (int j = 0; j < pisteet.length - 1; j++) {
                 String binaariNumero = "";
                 binaariNumero += pisteet[i][j];
                 binaariNumero += pisteet[i][j + 1];
@@ -146,70 +144,69 @@ public class Luola {
      * @param p Pane johon viivat sijoitetaan.
      */
     public void luoViiva(int luku, int x, int y, Pane p) {
-        if(luku < 1) {
+        if (luku < 1) {
             return;
-        }
-        else if(luku == 1) {
+        } else if (luku == 1) {
             Line viiva = new Line(x, y + (vali / 2), x + (vali / 2), y + vali);
             p.getChildren().add(viiva);
-        }
-        else if(luku == 2) {
+            
+        } else if (luku == 2) {
             Line viiva = new Line(x + (vali / 2), y + vali, x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 3) {
+            
+        } else if (luku == 3) {
             Line viiva = new Line(x, y + (vali / 2), x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 4) {
+            
+        } else if (luku == 4) {
             Line viiva = new Line(x + vali / 2, y, x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 5) {
+            
+        } else if (luku == 5) {
             Line viiva1 = new Line(x + (vali / 2), y, x, y + (vali / 2));
             Line viiva2 = new Line(x + vali, y + (vali / 2), x + (vali / 2), y + vali);
             p.getChildren().add(viiva1);
             p.getChildren().add(viiva2);
-        }
-        else if(luku == 6) {
-            Line viiva = new Line(x +(vali / 2), y, x + (vali / 2), y + vali);
+            
+        } else if (luku == 6) {
+            Line viiva = new Line(x + (vali / 2), y, x + (vali / 2), y + vali);
             p.getChildren().add(viiva);
-        }
-        else if(luku == 7) {
+            
+        } else if (luku == 7) {
             Line viiva = new Line(x + (vali / 2), y, x, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 8) {
+            
+        } else if (luku == 8) {
             Line viiva = new Line(x + (vali / 2), y, x, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 9) {
-            Line viiva = new Line(x +(vali / 2), y, x + (vali / 2), y + vali);
+            
+        } else if (luku == 9) {
+            Line viiva = new Line(x + (vali / 2), y, x + (vali / 2), y + vali);
             p.getChildren().add(viiva);
-        }
-        else if(luku == 10) {
+            
+        } else if (luku == 10) {
             Line viiva1 = new Line(x + (vali / 2), y, x + vali, y + (vali / 2));
             Line viiva2 = new Line(x + (vali / 2), y + vali, x, y + (vali / 2));
             p.getChildren().add(viiva1);
             p.getChildren().add(viiva2);
-        }
-        else if(luku == 11) {
+            
+        } else if (luku == 11) {
             Line viiva = new Line(x + vali / 2, y, x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 12) {
+            
+        } else if (luku == 12) {
             Line viiva = new Line(x, y + (vali / 2), x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 13) {
+            
+        } else if (luku == 13) {
             Line viiva = new Line(x + (vali / 2), y + vali, x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
-        }
-        else if(luku == 14) {
+            
+        } else if (luku == 14) {
             Line viiva = new Line(x, y + (vali / 2), x + (vali / 2), y + vali);
             p.getChildren().add(viiva);
-        }
-        else if(luku >= 15) {
+            
+        } else if (luku >= 15) {
             return;
         }
     }

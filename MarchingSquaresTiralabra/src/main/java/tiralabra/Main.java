@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import tiralabra.LuolaGeneraattori.Luola;
+import tiralabra.luola.Luola;
 
 public class Main extends Application {
     
