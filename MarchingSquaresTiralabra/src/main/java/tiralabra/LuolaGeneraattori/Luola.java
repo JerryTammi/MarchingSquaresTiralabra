@@ -67,6 +67,7 @@ public class Luola {
     }
     
     /**
+     * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
     public void luoTaulukko() {
@@ -122,7 +123,8 @@ public class Luola {
     }
     
     /**
-     * Metodi luo viivan annetun tiedon perusteella ja lisää sen paneen. 
+     * 
+     * Metodi muuntaa binäärinumeron tavalliseksi numeroksi 0 - 15 väliltä. 
      * 
      * @param luku Binaarinumero, joka on generoitu pisteet -taulukon sisällöstä riippuen missä kohtaa
      * ollaan. Esimerkiksi "1111" tai "1011"
@@ -134,6 +136,8 @@ public class Luola {
     }
     
     /**
+     * 
+     * Metodi luo viivan annetun tiedon perusteella ja lisää sen paneen. 
      * 
      * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään vektorin
      * generoimisessa.
