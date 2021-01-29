@@ -14,7 +14,7 @@ public class Main extends Application {
         
         Luola luola = new Luola(1000, 1000, 20);
         luola.luoTaulukko();
-        luola.lisaaPisteet();
+//        luola.lisaaPisteet();
         luola.lisaaViivat();
         
         Scene scene = new Scene(luola.haePane(), luola.haeLeveys(), luola.haeKorkeus());

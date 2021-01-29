@@ -56,10 +56,10 @@ public class Luola {
             for(int j = 0; j < pisteet.length; j++) {
                 Circle c = new Circle (j * vali, i * vali, 3);
                 if(pisteet[i][j] == 0) {
-                    c.setFill(Color.WHITE);
+                    c.setFill(Color.BLACK);
                 }
                 else {
-                    c.setFill(Color.BLACK);
+                    c.setFill(Color.WHITE);
                 }
                 ikkuna.getChildren().add(c);
             }
