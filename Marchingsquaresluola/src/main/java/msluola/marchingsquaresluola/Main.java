@@ -1,10 +1,11 @@
-package tiralabra;
+package msluola.marchingsquaresluola;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import tiralabra.luola.Luola;
+import msluola.marchingsquaresluola.Luola.Luola;
 
 public class Main extends Application {
     

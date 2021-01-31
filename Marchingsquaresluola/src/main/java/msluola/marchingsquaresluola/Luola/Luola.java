@@ -1,4 +1,4 @@
-package tiralabra.luola;
+package msluola.marchingsquaresluola.Luola;
 
 import java.util.Random;
 import javafx.scene.layout.Background;
