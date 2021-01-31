@@ -72,7 +72,7 @@ public class Luola {
     public void luoTaulukko() {
         Random r = new Random();
         for (int i = 0; i < pisteet.length; i++) {
-            for (int j = 0; j < pisteet.length; j++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
                 int randomnumero = r.nextInt(2);
                 pisteet[i][j] = randomnumero;
             }
@@ -85,7 +85,7 @@ public class Luola {
      */
     public void lisaaPisteet() {
         for (int i = 0; i < pisteet.length; i++) {
-            for (int j = 0; j < pisteet.length; j++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
                 Circle c = new Circle(j * vali, i * vali, 3);
                 if (pisteet[i][j] == 0) {
                     c.setFill(Color.BLACK);
@@ -105,7 +105,7 @@ public class Luola {
      */
     public void lisaaViivat() {
         for (int i = 0; i < pisteet.length - 1; i++) {
-            for (int j = 0; j < pisteet.length - 1; j++) {
+            for (int j = 0; j < pisteet[0].length - 1; j++) {
                 String binaariNumero = "";
                 binaariNumero += pisteet[i][j];
                 binaariNumero += pisteet[i][j + 1];
