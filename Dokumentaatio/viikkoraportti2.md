@@ -12,5 +12,7 @@ Koodin testauksessa on ollut ongelmia. Kun sijoitan junit rivit pom.xml:ään al
 
 Seuraavan viikon tavotteina testaus kuntoon, jonka jälkeen lähden kokeilemaan eri tapoja generoida luolia. Itse Marching squares -algoritmi toimii jo ja haasteena on taulukon täyttö numeroilla, jotka eivät ole liian satunnaiset. Jos jää aikaa tarkoituksena myös koodata käyttöliittymä, jonka avulla voi määrittää esim. luolan koon ja pisteiden välin pituuden.
 
+1.2.21 Päivitys 
 
+Piti poistaa java ja netbeans sekä asentaa uudelleen, mutta nyt kaikki toimii kuten pitää.
 
