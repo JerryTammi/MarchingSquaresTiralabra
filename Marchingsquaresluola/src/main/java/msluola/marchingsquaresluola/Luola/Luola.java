@@ -112,10 +112,10 @@ public class Luola {
      * 
      * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
      * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
- lopuksi lisää sen paneen.
+        lopuksi lisää sen paneen.
      * @param pisteet pisteiden taulukko
      * @param ikkuna ikkuna johon kaikki piirretään
-     * @param vali
+     * @param vali pisteiden väli
      */
     public void lisaaViivat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {
@@ -130,6 +130,25 @@ public class Luola {
                 int y = i * vali;
                 
                 luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna, vali);
+            }
+        }
+    }
+    
+    /** Erottaa luolan seinät ja tilan.       
+     * @param pisteet pisteiden taulukko
+     * @param ikkuna ikkuna johon kaikki piirretään
+     * @param vali pisteiden väli
+     */
+    public void lisaaSeinaVari(int[][]pisteet, Pane ikkuna, int vali) {
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
+                if (pisteet[i][j] == 0) {
+                    int aloitusX = j * vali;
+                    int aloitusY = i * vali;
+                    Line viivaX = new Line(aloitusX - (vali / 2), aloitusY, aloitusX + (vali / 2), aloitusY);
+                    Line viivaY = new Line(aloitusX, aloitusY  - (vali / 2), aloitusX, aloitusY  + (vali / 2));
+                    ikkuna.getChildren().addAll(viivaX, viivaY);
+                }
             }
         }
     }
@@ -231,8 +250,9 @@ public class Luola {
      */
     public Scene luoLuola() {
         luoTaulukko(pisteet);
-        lisaaPisteet(pisteet, ikkuna, vali);
+//        lisaaPisteet(pisteet, ikkuna, vali);
         lisaaViivat(pisteet, ikkuna, vali);
+        lisaaSeinaVari(pisteet, ikkuna, vali);
         Scene scene = new Scene(ikkuna, haeLeveys(), haeKorkeus());
         scene.setFill(Color.TEAL);
         return scene;
