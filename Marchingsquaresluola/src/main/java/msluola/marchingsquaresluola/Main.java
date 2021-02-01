@@ -14,9 +14,10 @@ public class Main extends Application {
         stage.setTitle("Marching squares");
         
         Luola luola = new Luola(1000, 1000, 20);
-        luola.luoTaulukko();
-        luola.lisaaPisteet();
-        luola.lisaaViivat();
+        int[][]pisteet = luola.haeTaulukko();
+        luola.luoTaulukko(pisteet);
+        luola.lisaaPisteet(pisteet);
+        luola.lisaaViivat(pisteet);
         
         Scene scene = new Scene(luola.haePane(), luola.haeLeveys(), luola.haeKorkeus());
         scene.setFill(Color.TEAL);

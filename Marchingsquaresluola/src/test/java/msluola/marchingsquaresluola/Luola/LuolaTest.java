@@ -21,67 +21,77 @@ public class LuolaTest {
     int vali;
     int[][]pisteet;
     Pane ikkuna;
-    
-    public LuolaTest() {
+        
+    @Before
+    public void setUp() {
         this.korkeus = 1000;
         this.leveys = 1000;
         this.vali = 20;
+        this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
         this.luola = new Luola(leveys, korkeus, vali);
     }
     
-    @Before
-    public void setUpClass() {
-        
-    }
-    
-    @After
-    public void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-        
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-
     @Test
-    public void testHaeLeveys() {
+    public void testiHaeLeveys() {
         assertEquals(1000, luola.haeLeveys());
     }
 
     @Test
-    public void testHaeKorkeus() {
+    public void testiHaeKorkeus() {
         assertEquals(1000, luola.haeKorkeus());
     }
 
     @Test
-    public void testHaeVali() {
+    public void testiHaeVali() {
         assertEquals(20, luola.haeVali());
     }
 
+    @Test
+    public void testiLuoTaulukko() {
+        luola.luoTaulukko(pisteet);
+        boolean onkoYksiTaiNolla = true;
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
+                if (pisteet[i][j] < 0 || pisteet[i][j] > 1) {
+                    onkoYksiTaiNolla = false;
+                }
+            }
+        }
+        assertEquals(true,onkoYksiTaiNolla);
+    }
+    
+    @Test
+    public void testiEihanTaulukossaKaikkiArvotOleNollaa() {
+        luola.luoTaulukko(pisteet);
+        boolean onkoYksi = false;
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
+                if (pisteet[i][j] == 1) {
+                    onkoYksi = true;
+                }
+            }
+        }
+        assertEquals(true,onkoYksi);
+    }
+    
+    @Test
+    public void testiEihanTaulukossaKaikkiArvotOleYhta() {
+        luola.luoTaulukko(pisteet);
+        boolean onkoNolla = false;
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
+                if(pisteet[i][j] == 1) {
+                    onkoNolla = true;
+                }
+            }
+        }
+        assertEquals(true,onkoNolla);
+    }
+
 //    @Test
-//    public void testLuoTaulukko() {
-//        System.out.println("luoTaulukko");
-//        Luola instance = null;
-//        instance.luoTaulukko();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of lisaaPisteet method, of class Luola.
-//     */
-//    @Test
-//    public void testLisaaPisteet() {
-//        System.out.println("lisaaPisteet");
-//        Luola instance = null;
-//        instance.lisaaPisteet();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+//    public void testiLisaaPisteet() {
+//        luola.lisaaPisteet(pisteet);
+//        
 //    }
 //
 //    /**

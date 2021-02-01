@@ -69,7 +69,7 @@ public class Luola {
      * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
-    public void luoTaulukko() {
+    public void luoTaulukko(int[][]pisteet) {
         Random r = new Random();
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
@@ -80,10 +80,18 @@ public class Luola {
     }
     
     /**
+     * Metodi, joka palauttaa taulukon.
+     * @return 
+     */
+    public int[][] haeTaulukko() {
+        return pisteet;
+    }
+    
+    /**
      * Lisää pisteet paneen. Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä. Tällä hetkellä
      * auttaa visualisoimaan algoritmia.
      */
-    public void lisaaPisteet() {
+    public void lisaaPisteet(int[][]pisteet) {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 Circle c = new Circle(j * vali, i * vali, 3);
@@ -103,7 +111,7 @@ public class Luola {
      * numeroksi. Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
      * lopuksi lisää sen paneen.
      */
-    public void lisaaViivat() {
+    public void lisaaViivat(int[][]pisteet) {
         for (int i = 0; i < pisteet.length - 1; i++) {
             for (int j = 0; j < pisteet[0].length - 1; j++) {
                 String binaariNumero = "";
