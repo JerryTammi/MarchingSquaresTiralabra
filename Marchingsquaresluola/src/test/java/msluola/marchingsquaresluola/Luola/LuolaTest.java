@@ -6,6 +6,8 @@
 package msluola.marchingsquaresluola.Luola;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import static junit.framework.Assert.assertEquals;
 import org.junit.*;
 import org.junit.Test;
@@ -28,6 +30,7 @@ public class LuolaTest {
         this.leveys = 1000;
         this.vali = 20;
         this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
+        this.ikkuna = new Pane();
         this.luola = new Luola(leveys, korkeus, vali);
     }
     
@@ -80,7 +83,7 @@ public class LuolaTest {
         boolean onkoNolla = false;
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
-                if(pisteet[i][j] == 1) {
+                if (pisteet[i][j] == 1) {
                     onkoNolla = true;
                 }
             }
@@ -88,53 +91,65 @@ public class LuolaTest {
         assertEquals(true,onkoNolla);
     }
 
+    @Test
+    public void testiLisaaPisteet() {
+        luola.luoTaulukko(pisteet);
+        luola.lisaaPisteet(pisteet, ikkuna,vali);
+        boolean loytyykoPiste = true;
+        int missa = 0;
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int j = 0; j < pisteet[0].length; j++) {
+                Circle c = new Circle(j * vali, i * vali, 3);
+                if (pisteet[i][j] == 0) {
+                    c.setFill(Color.BLACK);
+                } else {
+                    c.setFill(Color.WHITE);
+                }
+                Circle valmisPiste = (Circle)ikkuna.getChildren().get(missa);
+                if(valmisPiste.getCenterX() != j * vali) {
+                    loytyykoPiste = false;
+                }
+                if(valmisPiste.getCenterY() != i * vali) {
+                    loytyykoPiste = false;
+                }
+                if(valmisPiste.getFill() != c.getFill()) {
+                    loytyykoPiste = false;
+                }
+                missa++;
+            }
+        }
+        assertEquals(true, loytyykoPiste);
+    }
+
 //    @Test
-//    public void testiLisaaPisteet() {
-//        luola.lisaaPisteet(pisteet);
-//        
+//    public void testiLisaaViivat() {
+//        luola.luoTaulukko(pisteet);
+//        luola.lisaaViivat(pisteet, ikkuna, vali);
+//        boolean loytyykoViiva = true;
+//        for(int i = 0; i < pisteet.length; i++) {
+//            for(int j = 0; j < pisteet[0].length; j++) {
+//                
+//            }
+//        }
 //    }
-//
-//    /**
-//     * Test of lisaaViivat method, of class Luola.
-//     */
-//    @Test
-//    public void testLisaaViivat() {
-//        System.out.println("lisaaViivat");
-//        Luola instance = null;
-//        instance.lisaaViivat();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of binaariMuuntaminen method, of class Luola.
-//     */
-//    @Test
-//    public void testBinaariMuuntaminen() {
-//        System.out.println("binaariMuuntaminen");
-//        String luku = "";
-//        Luola instance = null;
-//        int expResult = 0;
-//        int result = instance.binaariMuuntaminen(luku);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of luoViiva method, of class Luola.
-//     */
-//    @Test
-//    public void testLuoViiva() {
-//        System.out.println("luoViiva");
-//        int luku = 0;
-//        int x = 0;
-//        int y = 0;
-//        Pane p = null;
-//        Luola instance = null;
-//        instance.luoViiva(luku, x, y, p);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    
+    @Test
+    public void testiBinaariMuuntaminenTapaus1() {
+        String luku = "1111";
+        int tulos = luola.binaariMuuntaminen(luku);
+        assertEquals(15, tulos);
+    }
+    
+    @Test
+    public void testiBinaariMuuntaminenTapaus2() {
+        String luku = "0000";
+        int tulos = luola.binaariMuuntaminen(luku);
+        assertEquals(0, tulos);
+    }
+    
+    @Test
+    public void testLuoViiva() {
+        
+    }
     
 }

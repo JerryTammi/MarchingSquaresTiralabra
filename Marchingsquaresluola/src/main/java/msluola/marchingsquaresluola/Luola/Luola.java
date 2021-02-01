@@ -1,6 +1,7 @@
 package msluola.marchingsquaresluola.Luola;
 
 import java.util.Random;
+import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -88,10 +89,12 @@ public class Luola {
     }
     
     /**
-     * Lisää pisteet paneen. Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä. Tällä hetkellä
-     * auttaa visualisoimaan algoritmia.
+     * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
+ auttaa visualisoimaan algoritmia.
+     * @param pisteet pisteiden taulukko
+     * @param ikkuna ikkuna johon kaikki piirretään
      */
-    public void lisaaPisteet(int[][]pisteet) {
+    public void lisaaPisteet(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 Circle c = new Circle(j * vali, i * vali, 3);
@@ -108,10 +111,13 @@ public class Luola {
     /**
      * 
      * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
-     * numeroksi. Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
-     * lopuksi lisää sen paneen.
+     * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
+ lopuksi lisää sen paneen.
+     * @param pisteet pisteiden taulukko
+     * @param ikkuna ikkuna johon kaikki piirretään
+     * @param vali
      */
-    public void lisaaViivat(int[][]pisteet) {
+    public void lisaaViivat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {
             for (int j = 0; j < pisteet[0].length - 1; j++) {
                 String binaariNumero = "";
@@ -123,7 +129,7 @@ public class Luola {
                 int x = j * vali;
                 int y = i * vali;
                 
-                luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna);
+                luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna, vali);
             }
         }
     }
@@ -151,7 +157,7 @@ public class Luola {
      * @param y Piste y ikkunassa.
      * @param p Pane johon viivat sijoitetaan.
      */
-    public void luoViiva(int luku, int x, int y, Pane p) {
+    public void luoViiva(int luku, int x, int y, Pane p, int vali) {
         if (luku < 1) {
             return;
         } else if (luku == 1) {
@@ -218,4 +224,18 @@ public class Luola {
             return;
         }
     }
+    
+    /**
+     *  Alustaa ohjelman
+     * @return Palauttaa scenen, jotta saadaan ohjelma pyörimään.
+     */
+    public Scene luoLuola() {
+        luoTaulukko(pisteet);
+        lisaaPisteet(pisteet, ikkuna, vali);
+        lisaaViivat(pisteet, ikkuna, vali);
+        Scene scene = new Scene(ikkuna, haeLeveys(), haeKorkeus());
+        scene.setFill(Color.TEAL);
+        return scene;
+    }
+    
 }
