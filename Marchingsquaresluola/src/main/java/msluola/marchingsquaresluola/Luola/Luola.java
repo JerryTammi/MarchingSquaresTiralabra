@@ -1,12 +1,13 @@
 package msluola.marchingsquaresluola.Luola;
 
 import java.util.Random;
-import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import msluola.marchingsquaresluola.Taulukkogeneraattorit.CellularAutomata;
 
 /**
  *
@@ -70,13 +71,24 @@ public class Luola {
      * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
+    ////////////////////////////////////////////////
+    // Luo generaattori
+    ////////////////////////////////////////////////
     public void luoTaulukko(int[][]pisteet) {
         Random r = new Random();
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
-                int randomnumero = r.nextInt(2);
-                pisteet[i][j] = randomnumero;
+                if (i < 1 || i == pisteet.length || j < 1 || j == pisteet[0].length) {
+                    pisteet[i][j] = 1;
+                } else {
+                    int randomnumero = r.nextInt(2);
+                    pisteet[i][j] = randomnumero;
+                }
             }
+        }
+        for (int i = 0; i < 10; i++) {
+            CellularAutomata ca = new CellularAutomata();
+            this.pisteet = ca.muunna(pisteet);
         }
     }
     
@@ -90,7 +102,7 @@ public class Luola {
     
     /**
      * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
- auttaa visualisoimaan algoritmia.
+        auttaa visualisoimaan algoritmia.
      * @param pisteet pisteiden taulukko
      * @param ikkuna ikkuna johon kaikki piirretään
      */
@@ -98,7 +110,7 @@ public class Luola {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 Circle c = new Circle(j * vali, i * vali, 3);
-                if (pisteet[i][j] == 0) {
+                if (pisteet[i][j] == 1) {
                     c.setFill(Color.BLACK);
                 } else {
                     c.setFill(Color.WHITE);
@@ -134,7 +146,7 @@ public class Luola {
         }
     }
     
-    /** Erottaa luolan seinät ja tilan.       
+    /** Erottaa luolan seinät ja tilan. Ei ole paras toteutus, toinen vaihtoehto harkinnassa.      
      * @param pisteet pisteiden taulukko
      * @param ikkuna ikkuna johon kaikki piirretään
      * @param vali pisteiden väli
@@ -142,7 +154,7 @@ public class Luola {
     public void lisaaSeinaVari(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
-                if (pisteet[i][j] == 0) {
+                if (pisteet[i][j] == 1) {
                     int aloitusX = j * vali;
                     int aloitusY = i * vali;
                     Line viivaX = new Line(aloitusX - (vali / 2), aloitusY, aloitusX + (vali / 2), aloitusY);
@@ -248,12 +260,12 @@ public class Luola {
      *  Alustaa ohjelman
      * @return Palauttaa scenen, jotta saadaan ohjelma pyörimään.
      */
-    public Scene luoLuola() {
+    public SubScene luoLuola() {
         luoTaulukko(pisteet);
 //        lisaaPisteet(pisteet, ikkuna, vali);
         lisaaViivat(pisteet, ikkuna, vali);
         lisaaSeinaVari(pisteet, ikkuna, vali);
-        Scene scene = new Scene(ikkuna, haeLeveys(), haeKorkeus());
+        SubScene scene = new SubScene(ikkuna, haeLeveys(), haeKorkeus());
         scene.setFill(Color.TEAL);
         return scene;
     }
