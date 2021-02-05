@@ -1,4 +1,4 @@
-package msluola.marchingsquaresluola.Luola;
+package msluola.marchingsquaresluola.luola;
 
 import java.util.Random;
 import javafx.scene.SubScene;
@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import msluola.marchingsquaresluola.Taulukkogeneraattorit.CellularAutomata;
+import msluola.marchingsquaresluola.taulukkogeneraattorit.CellularAutomata;
 
 /**
  *
@@ -19,6 +19,7 @@ public class Luola {
     int korkeus;
     int vali;
     int[][]pisteet;
+    boolean naytetaankoPisteet;
     
     /**
      *
@@ -26,13 +27,14 @@ public class Luola {
      * @param korkeus Ikkunan korkeus
      * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
      */
-    public Luola(int leveys, int korkeus, int vali) {
+    public Luola(int korkeus, int leveys, int vali) {
         ikkuna = new Pane();
         ikkuna.setBackground(Background.EMPTY);
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.vali = vali;
         this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
+        this.naytetaankoPisteet = false;
     }
     
     /**
@@ -69,11 +71,29 @@ public class Luola {
     
     /**
      * 
+     * @param naytetaanko Halutaanko näyttää pisteet
+     */
+    public void maaritaNaytetaankoPisteet(boolean naytetaanko) {
+        if (naytetaanko) {
+            naytetaankoPisteet = true;
+        }
+        if (!naytetaanko) {
+            naytetaankoPisteet = false;
+        }
+    } 
+    
+    /**
+     * 
+     * @return Palauttaa näytetäänkö pisteet vai ei.
+     */
+    public boolean haePisteetMaaritys() {
+        return naytetaankoPisteet;
+    }
+    
+    /**
+     * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
-    ////////////////////////////////////////////////
-    // Luo generaattori
-    ////////////////////////////////////////////////
     public void luoTaulukko(int[][]pisteet) {
         Random r = new Random();
         for (int i = 0; i < pisteet.length; i++) {
@@ -86,10 +106,9 @@ public class Luola {
                 }
             }
         }
-        for (int i = 0; i < 10; i++) {
-            CellularAutomata ca = new CellularAutomata();
-            this.pisteet = ca.muunna(pisteet);
-        }
+        CellularAutomata ca = new CellularAutomata();
+        int aste = 3;
+        this.pisteet = ca.muunna(pisteet, aste);
     }
     
     /**
@@ -251,7 +270,7 @@ public class Luola {
             Line viiva = new Line(x, y + (vali / 2), x + (vali / 2), y + vali);
             p.getChildren().add(viiva);
             
-        } else if (luku >= 15) {
+        } else if (luku > 14) {
             return;
         }
     }
@@ -262,7 +281,9 @@ public class Luola {
      */
     public SubScene luoLuola() {
         luoTaulukko(pisteet);
-//        lisaaPisteet(pisteet, ikkuna, vali);
+        if (naytetaankoPisteet) {
+            lisaaPisteet(pisteet, ikkuna, vali);
+        }
         lisaaViivat(pisteet, ikkuna, vali);
         lisaaSeinaVari(pisteet, ikkuna, vali);
         SubScene scene = new SubScene(ikkuna, haeLeveys(), haeKorkeus());
