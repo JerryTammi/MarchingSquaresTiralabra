@@ -1,6 +1,6 @@
-package msluola.marchingsquaresluola.taulukkogeneraattorit;
+package msluola.marchingsquaresluola.generaattorit;
 
-public class CellularAutomata {
+public class Soluautomaatti {
     
     /** 
      * Luodaan uusi taulukko, jota muokataan alkuperäisen taulukkon pohjalta ja lopuksi korvaa sen.
@@ -41,17 +41,17 @@ public class CellularAutomata {
      * 
      * @param pisteet Muokattava taulukko.
      */
-    public void siivoaTaulukko(int[][]pisteet) {
+    private void siivoaTaulukko(int[][]pisteet) {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (i < 1 || i == pisteet.length - 1 || j < 1 || j == pisteet[0].length - 1) {
                     pisteet[i][j] = 1;
                 } else if (pisteet[i][j] == 1) {
-                    if (vierusSeinat(i, j, pisteet) == 0) {
+                    if (vierusSeinat(i, j, pisteet) < 1) {
                         pisteet[i][j] = 0;
                     }
                 } else if (pisteet[i][j] == 0) {
-                    if (vierusSeinat(i, j, pisteet) == 8) {
+                    if (vierusSeinat(i, j, pisteet) > 7) {
                         pisteet[i][j] = 1;
                     }
                 }
@@ -67,7 +67,7 @@ public class CellularAutomata {
      * @param pisteet Taristeltava taulukko
      * @return Palauttaa montako pistettä pisteen x,y ympärillä on.
      */
-    public int vierusSeinat(int y, int x, int[][]pisteet) {
+    private int vierusSeinat(int y, int x, int[][]pisteet) {
         int seinat = 0;
         for (int i = y - 1; i <= y + 1; i++) {
             for (int j = x; j <= x + 1; j++) {

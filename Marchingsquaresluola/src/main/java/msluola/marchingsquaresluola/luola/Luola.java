@@ -1,13 +1,15 @@
 package msluola.marchingsquaresluola.luola;
 
-import java.util.Random;
+import java.io.FileNotFoundException;
 import javafx.scene.SubScene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import msluola.marchingsquaresluola.taulukkogeneraattorit.CellularAutomata;
+import msluola.marchingsquaresluola.generaattorit.Soluautomaatti;
+import msluola.marchingsquaresluola.generaattorit.MarchingSquaresViivat;
+import msluola.marchingsquaresluola.generaattorit.LehmerRng;
 
 /**
  *
@@ -19,7 +21,12 @@ public class Luola {
     int korkeus;
     int vali;
     int[][]pisteet;
-    boolean naytetaankoPisteet;
+    Hahmo hahmo;
+    int alkuAloituspiste;
+    int loppuAloituspiste;
+    long omaSeed;
+    long edellinenSeed;
+    long seuraavaSeed;
     
     /**
      *
@@ -27,14 +34,16 @@ public class Luola {
      * @param korkeus Ikkunan korkeus
      * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
      */
-    public Luola(int korkeus, int leveys, int vali) {
+    public Luola(int korkeus, int leveys, int vali, long seed) {
         ikkuna = new Pane();
         ikkuna.setBackground(Background.EMPTY);
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.vali = vali;
         this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
-        this.naytetaankoPisteet = false;
+        omaSeed = seed;
+        edellinenSeed = 0;
+        seuraavaSeed = 0;
     }
     
     /**
@@ -71,44 +80,62 @@ public class Luola {
     
     /**
      * 
-     * @param naytetaanko Halutaanko näyttää pisteet
-     */
-    public void maaritaNaytetaankoPisteet(boolean naytetaanko) {
-        if (naytetaanko) {
-            naytetaankoPisteet = true;
-        }
-        if (!naytetaanko) {
-            naytetaankoPisteet = false;
-        }
-    } 
-    
-    /**
-     * 
-     * @return Palauttaa näytetäänkö pisteet vai ei.
-     */
-    public boolean haePisteetMaaritys() {
-        return naytetaankoPisteet;
-    }
-    
-    /**
-     * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
-    public void luoTaulukko(int[][]pisteet) {
-        Random r = new Random();
-        for (int i = 0; i < pisteet.length; i++) {
-            for (int j = 0; j < pisteet[0].length; j++) {
-                if (i < 1 || i == pisteet.length || j < 1 || j == pisteet[0].length) {
-                    pisteet[i][j] = 1;
-                } else {
-                    int randomnumero = r.nextInt(2);
-                    pisteet[i][j] = randomnumero;
-                }
+    public void luoTaulukko() {
+        LehmerRng l = new LehmerRng(pisteet, omaSeed);
+        pisteet = l.luoTaulu();
+        
+        Soluautomaatti sa = new Soluautomaatti();
+        int aste = 3;
+        this.pisteet = sa.muunna(pisteet, aste);
+        
+        Long aukotSeed = System.nanoTime() % System.currentTimeMillis();
+        LehmerRng aukot = new LehmerRng(aukotSeed);
+        alkuAloituspiste = (int) (aukot.lehmer() % (korkeus / vali) - (vali / 4));;
+        loppuAloituspiste = (int) (aukot.lehmer() % (korkeus / vali) - (vali / 4));
+        if (alkuAloituspiste < 0) {
+            alkuAloituspiste = 0;
+        }
+        if (loppuAloituspiste < 0) {
+            loppuAloituspiste = 0;
+        }
+        
+        for (int i = alkuAloituspiste; i < alkuAloituspiste + (vali / 4); i++) {
+            for (int j = 0; j < (vali / 4); j++) {
+                pisteet[i][j] = 0;
             }
         }
-        CellularAutomata ca = new CellularAutomata();
-        int aste = 3;
-        this.pisteet = ca.muunna(pisteet, aste);
+        
+        for (int i = loppuAloituspiste; i < loppuAloituspiste + (vali / 4); i++) {
+            for (int j = ((leveys / vali) - 1) - (vali / 4); j <= (leveys / vali); j++) {
+                pisteet[i][j] = 0;
+            }
+        }
+    }
+    
+    public void asetaOmaSeed(long seed) {
+        omaSeed = seed;
+    }
+    
+    public long haeOmaSeed() {
+        return omaSeed;
+    }
+    
+    public void asetaEdellinenSeed(long seed) {
+        edellinenSeed = seed;
+    }
+    
+    public long haeEdellinenSeed() {
+        return edellinenSeed;
+    }
+    
+    public void asetaSeuraavaSeed(long seed) {
+        seuraavaSeed = seed;
+    }
+    
+    public long haeSeuraavaSeed() {
+        return seuraavaSeed;
     }
     
     /**
@@ -148,29 +175,16 @@ public class Luola {
      * @param ikkuna ikkuna johon kaikki piirretään
      * @param vali pisteiden väli
      */
-    public void lisaaViivat(int[][]pisteet, Pane ikkuna, int vali) {
-        for (int i = 0; i < pisteet.length - 1; i++) {
-            for (int j = 0; j < pisteet[0].length - 1; j++) {
-                String binaariNumero = "";
-                binaariNumero += pisteet[i][j];
-                binaariNumero += pisteet[i][j + 1];
-                binaariNumero += pisteet[i + 1][j + 1];
-                binaariNumero += pisteet[i + 1][j];
-                
-                int x = j * vali;
-                int y = i * vali;
-                
-                luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna, vali);
-            }
-        }
+    public void lisaaViivat() {
+        MarchingSquaresViivat msv = new MarchingSquaresViivat();
+        msv.lisaaViivat(pisteet, ikkuna, vali);
+        lisaaSeinaVari();
     }
     
-    /** Erottaa luolan seinät ja tilan. Ei ole paras toteutus, toinen vaihtoehto harkinnassa.      
-     * @param pisteet pisteiden taulukko
-     * @param ikkuna ikkuna johon kaikki piirretään
-     * @param vali pisteiden väli
+    /** 
+     * Erottaa luolan seinät ja tilan. Ei ole paras toteutus, toinen vaihtoehto harkinnassa.      
      */
-    public void lisaaSeinaVari(int[][]pisteet, Pane ikkuna, int vali) {
+    public void lisaaSeinaVari() {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (pisteet[i][j] == 1) {
@@ -184,110 +198,33 @@ public class Luola {
         }
     }
     
-    /**
-     * 
-     * Metodi muuntaa binäärinumeron tavalliseksi numeroksi 0 - 15 väliltä. 
-     * 
-     * @param luku Binaarinumero, joka on generoitu pisteet -taulukon sisällöstä riippuen missä kohtaa
-     * ollaan. Esimerkiksi "1111" tai "1011"
-     * @return Tavallinen numero, joka vastaa binäärinumeroa. Esimerkiksi "1111" muuttuu 15.
-     */
-    public int binaariMuuntaminen(String luku) {
-        return (luku.charAt(0) - '0') * 8 + (luku.charAt(1) - '0') * 4 
-               + (luku.charAt(2) - '0') * 2 + (luku.charAt(3) - '0');
-    }
     
-    /**
-     * 
-     * Metodi luo viivan annetun tiedon perusteella ja lisää sen paneen. 
-     * 
-     * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään vektorin
-     * generoimisessa.
-     * @param x Piste x ikkunassa.
-     * @param y Piste y ikkunassa.
-     * @param p Pane johon viivat sijoitetaan.
-     */
-    public void luoViiva(int luku, int x, int y, Pane p, int vali) {
-        if (luku < 1) {
-            return;
-        } else if (luku == 1) {
-            Line viiva = new Line(x, y + (vali / 2), x + (vali / 2), y + vali);
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 2) {
-            Line viiva = new Line(x + (vali / 2), y + vali, x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 3) {
-            Line viiva = new Line(x, y + (vali / 2), x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 4) {
-            Line viiva = new Line(x + vali / 2, y, x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 5) {
-            Line viiva1 = new Line(x + (vali / 2), y, x, y + (vali / 2));
-            Line viiva2 = new Line(x + vali, y + (vali / 2), x + (vali / 2), y + vali);
-            p.getChildren().add(viiva1);
-            p.getChildren().add(viiva2);
-            
-        } else if (luku == 6) {
-            Line viiva = new Line(x + (vali / 2), y, x + (vali / 2), y + vali);
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 7) {
-            Line viiva = new Line(x + (vali / 2), y, x, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 8) {
-            Line viiva = new Line(x + (vali / 2), y, x, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 9) {
-            Line viiva = new Line(x + (vali / 2), y, x + (vali / 2), y + vali);
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 10) {
-            Line viiva1 = new Line(x + (vali / 2), y, x + vali, y + (vali / 2));
-            Line viiva2 = new Line(x + (vali / 2), y + vali, x, y + (vali / 2));
-            p.getChildren().add(viiva1);
-            p.getChildren().add(viiva2);
-            
-        } else if (luku == 11) {
-            Line viiva = new Line(x + vali / 2, y, x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 12) {
-            Line viiva = new Line(x, y + (vali / 2), x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 13) {
-            Line viiva = new Line(x + (vali / 2), y + vali, x + vali, y + (vali / 2));
-            p.getChildren().add(viiva);
-            
-        } else if (luku == 14) {
-            Line viiva = new Line(x, y + (vali / 2), x + (vali / 2), y + vali);
-            p.getChildren().add(viiva);
-            
-        } else if (luku > 14) {
-            return;
-        }
-    }
+//    public Hahmo haeHahmo() {
+//        return hahmo;
+//    }
     
     /**
      *  Alustaa ohjelman
      * @return Palauttaa scenen, jotta saadaan ohjelma pyörimään.
      */
+//    public Pane luoLuola() throws FileNotFoundException {
+//        luoTaulukko();
+//        lisaaViivat();
+//        hahmo = new Hahmo(vali / 2, (alkuAloituspiste * vali) + 10);
+//        ikkuna.getChildren().add(hahmo.haeHahmo());
+//        return ikkuna;
+//    }
+    
     public SubScene luoLuola() {
-        luoTaulukko(pisteet);
-        if (naytetaankoPisteet) {
-            lisaaPisteet(pisteet, ikkuna, vali);
-        }
-        lisaaViivat(pisteet, ikkuna, vali);
-        lisaaSeinaVari(pisteet, ikkuna, vali);
+        luoTaulukko();
+        lisaaViivat();
+        
+//        hahmo = new Hahmo(vali / 2, (alkuAloituspiste * vali) + 10);
+//        
+//        ikkuna.getChildren().add(hahmo.haeHahmo());
+        
         SubScene scene = new SubScene(ikkuna, haeLeveys(), haeKorkeus());
-        scene.setFill(Color.TEAL);
+        scene.setFill(Color.DARKSLATEGRAY);
         return scene;
     }
     
