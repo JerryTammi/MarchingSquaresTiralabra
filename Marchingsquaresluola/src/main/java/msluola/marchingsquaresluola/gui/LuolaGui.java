@@ -30,7 +30,7 @@ public class LuolaGui {
     
     public void alustaAlkutoimet() {
         AnchorPane rootAsetukset = new AnchorPane();
-        TextField luolienMaaraMaaritys = new TextField("100");
+        TextField luolienMaaraMaaritys = new TextField("1000");
         Button luolienMaaraMaaritysNappi = new Button("Montako luolaa?");
         
         luolienMaaraMaaritys.setLayoutX(25);
@@ -51,8 +51,8 @@ public class LuolaGui {
             }
             if (!virhe) {
                 luolienMaara = Integer.parseInt(lukumaara);
-                if (luolienMaara > 10000) {
-                    luolienMaara = 10000;
+                if (luolienMaara > 100000) {
+                    luolienMaara = 100000;
                 }
                 if (luolienMaara < 2) {
                     luolienMaara = 2;
@@ -75,10 +75,10 @@ public class LuolaGui {
         Button uusiLuolaNappi = new Button("Seuraava luola");
         utility.getChildren().add(uusiLuolaNappi);
         SubScene s = new SubScene(utility, 200, 1000);
-        s.setLayoutX(1000);
+        s.setLayoutX(1920);
         
         Luolasto luolasto = new Luolasto(n);
-        luolasto.louLuolasto(1000, 1000, 20, rootLuolasto);
+        luolasto.louLuolasto(1000, 1920, 20, rootLuolasto);
         Button siirryLuoliin = new Button("Siirry ensimmäiseen luolaan");
         siirryLuoliin.setLayoutX(25);
         siirryLuoliin.setLayoutY(25);
@@ -97,14 +97,14 @@ public class LuolaGui {
         
         
         siirryLuoliin.setOnAction(e -> {
-            luolaScene = new Scene(rootLuola, 1200, 1000);
+            luolaScene = new Scene(rootLuola, 2100, 1000);
             rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), s);
             stage.setScene(luolaScene);
             stage.show();
         });
         
         rootLuolasto.getChildren().add(siirryLuoliin);
-        luolastoScene = new Scene(rootLuolasto, 1000, 1000);
+        luolastoScene = new Scene(rootLuolasto, 1920, 1000);
     }
     
     public Scene haeAsetusScene() {

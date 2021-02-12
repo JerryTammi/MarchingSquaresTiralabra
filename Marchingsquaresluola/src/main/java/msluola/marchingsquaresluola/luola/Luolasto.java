@@ -20,8 +20,6 @@ public class Luolasto {
     
     
     public void louLuolasto(int korkeus, int leveys, int vali, AnchorPane p) {
-        //TODO
-        // Random numerot vittuun
         this.pane = p;
         LehmerRng rand = new LehmerRng(System.nanoTime() % System.currentTimeMillis());
         long edellinen = 0;
@@ -32,8 +30,8 @@ public class Luolasto {
                 l.asetaEdellinenSeed(edellinen);
             }
             luolat.add(l);
-            int x = 100 + (int)(rand.lehmer() % (leveys - 200));
-            int y = 100 + (int)(rand.lehmer() % (korkeus - 200));
+            int x = (vali * 5) + (int)(rand.lehmer() % (leveys - (vali * 10)));
+            int y = (vali * 5) + (int)(rand.lehmer() % (korkeus - (vali * 10)));
             lisaaPisteLuola(y, x, i, p, l);
             edellinen = seed;
         }

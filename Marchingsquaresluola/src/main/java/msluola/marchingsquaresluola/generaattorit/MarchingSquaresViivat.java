@@ -1,11 +1,15 @@
 package msluola.marchingsquaresluola.generaattorit;
 
+import java.awt.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 public class MarchingSquaresViivat {
         
-    public void lisaaViivat(int[][]pisteet, Pane ikkuna, int vali) {
+    public void lisaaSeinat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {
             for (int j = 0; j < pisteet[0].length - 1; j++) {
                 String binaariNumero = "";
@@ -18,6 +22,7 @@ public class MarchingSquaresViivat {
                 int y = i * vali;
                 
                 luoViiva(binaariMuuntaminen(binaariNumero), x, y, ikkuna, vali);
+                luoSeina(binaariMuuntaminen(binaariNumero), x, y, ikkuna, vali);
             }
         }
     }
@@ -60,7 +65,7 @@ public class MarchingSquaresViivat {
             p.getChildren().add(viiva);
             
         } else if (luku == 4) {
-            Line viiva = new Line(x + vali / 2, y, x + vali, y + (vali / 2));
+            Line viiva = new Line(x + (vali / 2), y, x + vali, y + (vali / 2));
             p.getChildren().add(viiva);
             
         } else if (luku == 5) {
@@ -111,4 +116,145 @@ public class MarchingSquaresViivat {
             return;
         }
     }
+    
+    public void luoSeina(int luku, int x, int y, Pane p, int vali) {
+        if (luku < 1) {
+            return;
+        }
+        else if (luku == 1) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x), new Double(y + (vali / 2)), new Double(x + (vali / 2)), new Double(y + vali), 
+                new Double(x), new Double(y + vali)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 2) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x + (vali / 2)), new Double(y + vali), new Double(x + vali), new Double(y + (vali / 2)), 
+                new Double(x + vali), new Double(y + vali)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 3) {
+            Rectangle seinanPalanen = new Rectangle();
+            seinanPalanen.setX(x);
+            seinanPalanen.setY(y + (vali / 2));
+            seinanPalanen.setWidth(vali);
+            seinanPalanen.setHeight(vali / 2);
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 4) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y + (vali / 2)), 
+                new Double(x + vali), new Double(y)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 5) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y),
+                new Double(x + vali), new Double(y + (vali / 2)), new Double(x + (vali / 2)), new Double(y + vali),
+                new Double(x), new Double(y + vali), new Double(x), new Double(y + (vali / 2))});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 6) {
+            Rectangle seinanPalanen = new Rectangle();
+            seinanPalanen.setX(x + (vali / 2));
+            seinanPalanen.setY(y);
+            seinanPalanen.setWidth(vali / 2);
+            seinanPalanen.setHeight(vali);
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 7) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y), 
+                new Double(x + vali), new Double(y + vali), new Double(x), new Double(y + vali), 
+                new Double(x), new Double(y + (vali / 2))});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 8) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x + (vali / 2)), new Double(y), new Double(x), new Double(y + (vali / 2)), 
+                new Double(x), new Double(y)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 9) {
+            Rectangle seinanPalanen = new Rectangle();
+            seinanPalanen.setX(x);
+            seinanPalanen.setY(y);
+            seinanPalanen.setWidth(vali / 2);
+            seinanPalanen.setHeight(vali);
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 10) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x), new Double(y), new Double(x + (vali / 2)), new Double(y), 
+                new Double(x + vali), new Double(y + (vali / 2)), new Double(x + vali), new Double(y + vali), 
+                new Double(x + (vali / 2)), new Double(y + vali), new Double(x), new Double(y + (vali / 2))});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 11) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x), new Double(y), new Double(x + (vali / 2)), new Double(y), 
+                new Double(x + vali), new Double(y + (vali / 2)), new Double(x + vali), new Double(y + vali), 
+                new Double(x), new Double(y + vali)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 12) {
+            Rectangle seinanPalanen = new Rectangle();
+            seinanPalanen.setX(x);
+            seinanPalanen.setY(y);
+            seinanPalanen.setWidth(vali);
+            seinanPalanen.setHeight(vali / 2);
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 13) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x), new Double(y), new Double(x + vali), new Double(y), 
+                new Double(x + vali), new Double(y + (vali / 2)), new Double(x + (vali / 2)), new Double(y + vali), 
+                new Double(x), new Double(y + vali)});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 14) {
+            Polygon seinanPalanen = new Polygon();
+            seinanPalanen.getPoints().addAll(new Double[]{
+                new Double(x), new Double(y), new Double(x + vali), new Double(y), 
+                new Double(x + vali), new Double(y + vali), new Double(x + (vali / 2)), new Double(y + vali), 
+                new Double(x), new Double(y + (vali / 2))});
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku == 15) {
+            Rectangle seinanPalanen = new Rectangle();
+            seinanPalanen.setX(x);
+            seinanPalanen.setY(y);
+            seinanPalanen.setWidth(vali);
+            seinanPalanen.setHeight(vali);
+            seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
+            p.getChildren().add(seinanPalanen);
+        }
+        else if (luku > 15) {
+            return;
+        }
+    }
+        
 }

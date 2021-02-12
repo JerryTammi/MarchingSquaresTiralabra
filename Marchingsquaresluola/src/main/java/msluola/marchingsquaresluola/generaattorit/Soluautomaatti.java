@@ -13,7 +13,7 @@ public class Soluautomaatti {
      * @param aste Kuinka voimakas muutos taulukkoon.
      * @return Palauttaa muokatun taulukon.
      */
-    public int[][] muunna(int[][]pisteet, int aste) {
+    public int[][] muunna(int[][]pisteet) {
         int[][]uudetPisteet = new int[pisteet.length][pisteet[0].length];
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
@@ -21,18 +21,27 @@ public class Soluautomaatti {
             }
         }
         
-        for (int i = 0; i < uudetPisteet.length - 1; i++) {
-            for (int j = 0; j < uudetPisteet[0].length - 1; j++) {
+        for (int i = 0; i < uudetPisteet.length; i++) {
+            for (int j = 0; j < uudetPisteet[0].length; j++) {
                 int seinat = vierusSeinat(i, j, pisteet);
-                if (seinat > aste) {
-                    uudetPisteet[i][j] = 1;
-                } else if (seinat < aste) {
-                    uudetPisteet[i][j] = 0;
+                if (pisteet[i][j] == 1) {
+                    if (seinat < 4) {
+                        uudetPisteet[i][j] = 0;
+                    }
+                    else {
+                        uudetPisteet[i][j] = 1;
+                    }
+                }
+                else {
+                    if (seinat > 4) {
+                        uudetPisteet[i][j] = 1;
+                    }
+                    else {
+                        uudetPisteet[i][j] = 0;
+                    }
                 }
             }
         }
-        siivoaTaulukko(uudetPisteet);
-        siivoaTaulukko(uudetPisteet);
         return uudetPisteet;
     }
     
@@ -46,14 +55,6 @@ public class Soluautomaatti {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (i < 1 || i == pisteet.length - 1 || j < 1 || j == pisteet[0].length - 1) {
                     pisteet[i][j] = 1;
-                } else if (pisteet[i][j] == 1) {
-                    if (vierusSeinat(i, j, pisteet) < 1) {
-                        pisteet[i][j] = 0;
-                    }
-                } else if (pisteet[i][j] == 0) {
-                    if (vierusSeinat(i, j, pisteet) > 7) {
-                        pisteet[i][j] = 1;
-                    }
                 }
             }
         }
@@ -69,15 +70,20 @@ public class Soluautomaatti {
      */
     private int vierusSeinat(int y, int x, int[][]pisteet) {
         int seinat = 0;
-        for (int i = y - 1; i <= y + 1; i++) {
-            for (int j = x; j <= x + 1; j++) {
-                if (i >= 0 && i < pisteet.length && j >= 0 && j < pisteet[0].length) {
-                    if (i != y || j != x) {
-                        seinat += pisteet[i][j];
-                    }
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                int naapuriY = y + i;
+                int naapuriX = x + j;
+                if (i == 0 && j == 0) {
+                }
+                else if (naapuriY < 0 || naapuriX < 0 || naapuriY >= pisteet.length - 1 || naapuriX >= pisteet[0].length) {
+                    seinat++;
+                }
+                else if (pisteet[naapuriY][naapuriX] == 1) {
+                    seinat++;
                 }
             }
-        } 
+        }
         return seinat;
     }
 }

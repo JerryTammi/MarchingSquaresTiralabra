@@ -5,6 +5,7 @@ import javafx.scene.SubScene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import msluola.marchingsquaresluola.generaattorit.Soluautomaatti;
@@ -87,31 +88,9 @@ public class Luola {
         pisteet = l.luoTaulu();
         
         Soluautomaatti sa = new Soluautomaatti();
-        int aste = 3;
-        this.pisteet = sa.muunna(pisteet, aste);
-        
-        Long aukotSeed = System.nanoTime() % System.currentTimeMillis();
-        LehmerRng aukot = new LehmerRng(aukotSeed);
-        alkuAloituspiste = (int) (aukot.lehmer() % (korkeus / vali) - (vali / 4));;
-        loppuAloituspiste = (int) (aukot.lehmer() % (korkeus / vali) - (vali / 4));
-        if (alkuAloituspiste < 0) {
-            alkuAloituspiste = 0;
-        }
-        if (loppuAloituspiste < 0) {
-            loppuAloituspiste = 0;
-        }
-        
-        for (int i = alkuAloituspiste; i < alkuAloituspiste + (vali / 4); i++) {
-            for (int j = 0; j < (vali / 4); j++) {
-                pisteet[i][j] = 0;
-            }
-        }
-        
-        for (int i = loppuAloituspiste; i < loppuAloituspiste + (vali / 4); i++) {
-            for (int j = ((leveys / vali) - 1) - (vali / 4); j <= (leveys / vali); j++) {
-                pisteet[i][j] = 0;
-            }
-        }
+        for (int i = 0; i < 10; i++) {
+            this.pisteet = sa.muunna(pisteet);
+        } 
     }
     
     public void asetaOmaSeed(long seed) {
@@ -175,56 +154,20 @@ public class Luola {
      * @param ikkuna ikkuna johon kaikki piirretään
      * @param vali pisteiden väli
      */
-    public void lisaaViivat() {
+    public void lisaaSeinat() {
         MarchingSquaresViivat msv = new MarchingSquaresViivat();
-        msv.lisaaViivat(pisteet, ikkuna, vali);
-        lisaaSeinaVari();
+        msv.lisaaSeinat(pisteet, ikkuna, vali);
     }
-    
-    /** 
-     * Erottaa luolan seinät ja tilan. Ei ole paras toteutus, toinen vaihtoehto harkinnassa.      
-     */
-    public void lisaaSeinaVari() {
-        for (int i = 0; i < pisteet.length; i++) {
-            for (int j = 0; j < pisteet[0].length; j++) {
-                if (pisteet[i][j] == 1) {
-                    int aloitusX = j * vali;
-                    int aloitusY = i * vali;
-                    Line viivaX = new Line(aloitusX - (vali / 2), aloitusY, aloitusX + (vali / 2), aloitusY);
-                    Line viivaY = new Line(aloitusX, aloitusY  - (vali / 2), aloitusX, aloitusY  + (vali / 2));
-                    ikkuna.getChildren().addAll(viivaX, viivaY);
-                }
-            }
-        }
-    }
-    
-    
-//    public Hahmo haeHahmo() {
-//        return hahmo;
-//    }
     
     /**
-     *  Alustaa ohjelman
-     * @return Palauttaa scenen, jotta saadaan ohjelma pyörimään.
+     * 
+     * @return 
      */
-//    public Pane luoLuola() throws FileNotFoundException {
-//        luoTaulukko();
-//        lisaaViivat();
-//        hahmo = new Hahmo(vali / 2, (alkuAloituspiste * vali) + 10);
-//        ikkuna.getChildren().add(hahmo.haeHahmo());
-//        return ikkuna;
-//    }
-    
     public SubScene luoLuola() {
         luoTaulukko();
-        lisaaViivat();
-        
-//        hahmo = new Hahmo(vali / 2, (alkuAloituspiste * vali) + 10);
-//        
-//        ikkuna.getChildren().add(hahmo.haeHahmo());
-        
+        lisaaSeinat();
         SubScene scene = new SubScene(ikkuna, haeLeveys(), haeKorkeus());
-        scene.setFill(Color.DARKSLATEGRAY);
+        scene.setFill(Color.TEAL);
         return scene;
     }
     
