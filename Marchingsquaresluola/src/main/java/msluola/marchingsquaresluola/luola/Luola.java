@@ -93,26 +93,50 @@ public class Luola {
         } 
     }
     
+    /**
+     * Muistaa oman numeron
+     * @param seed 
+     */
     public void asetaOmaSeed(long seed) {
         omaSeed = seed;
     }
     
+    /**
+     * Hakee oman numeron
+     * @return 
+     */
     public long haeOmaSeed() {
         return omaSeed;
     }
     
+    /**
+     * Muistaa edellisen luolan numeron
+     * @param seed 
+     */
     public void asetaEdellinenSeed(long seed) {
         edellinenSeed = seed;
     }
     
+    /**
+     * Hakee edellisen numeron
+     * @return 
+     */
     public long haeEdellinenSeed() {
         return edellinenSeed;
     }
     
+    /**
+     * Muistaa seuraavan numeron
+     * @param seed 
+     */
     public void asetaSeuraavaSeed(long seed) {
         seuraavaSeed = seed;
     }
     
+    /**
+     * Hakee seuraavan numeron
+     * @return 
+     */
     public long haeSeuraavaSeed() {
         return seuraavaSeed;
     }
