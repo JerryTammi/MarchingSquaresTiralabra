@@ -9,6 +9,12 @@ import javafx.scene.shape.Rectangle;
 
 public class MarchingSquaresViivat {
         
+    /**
+     *  Erottaa seinät ja lattian luolassa. 
+     * @param pisteet
+     * @param ikkuna
+     * @param vali 
+     */
     public void lisaaSeinat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {
             for (int j = 0; j < pisteet[0].length - 1; j++) {
@@ -48,6 +54,7 @@ public class MarchingSquaresViivat {
      * @param x Piste x ikkunassa.
      * @param y Piste y ikkunassa.
      * @param p Pane johon viivat sijoitetaan.
+     * @param vali luolan tiheyden määrittävä luku.
      */
     public void luoViiva(int luku, int x, int y, Pane p, int vali) {
         if (luku < 1) {
@@ -117,6 +124,15 @@ public class MarchingSquaresViivat {
         }
     }
     
+    /**
+     *  Samanlainen idea kuin luoViiva:ssa mutta täyttää seinän 
+     * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään polygonin
+     * generoimisessa.
+     * @param x Piste x ikkunassa.
+     * @param y Piste y ikkunassa.
+     * @param p Pane johon viivat sijoitetaan.
+     * @param vali luolan tiheyden määrittävä luku.
+     */
     public void luoSeina(int luku, int x, int y, Pane p, int vali) {
         if (luku < 1) {
             return;
@@ -256,5 +272,4 @@ public class MarchingSquaresViivat {
             return;
         }
     }
-        
 }

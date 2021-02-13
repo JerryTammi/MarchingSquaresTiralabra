@@ -1,5 +1,9 @@
 package msluola.marchingsquaresluola.generaattorit;
 
+/**
+ * 
+ * @author Jerry
+ */
 public class LehmerRng {
     long seed;
     int[][]pisteet;

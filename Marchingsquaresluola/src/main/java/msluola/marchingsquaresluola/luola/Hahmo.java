@@ -12,6 +12,12 @@ public class Hahmo {
     int x;
     int y;
     
+    /**
+     * Ei ole tällä hetkellä käytössä, saattaa tulla käyttöön jossain vaiheessa
+     * @param x
+     * @param y
+     * @throws FileNotFoundException 
+     */
     public Hahmo(int x, int y) throws FileNotFoundException {
         hahmo = new ImageView(new Image(new FileInputStream("src\\media\\hahmo.png")));
         hahmo.setX(x);

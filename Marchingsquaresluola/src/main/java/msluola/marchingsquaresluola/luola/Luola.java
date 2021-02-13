@@ -184,7 +184,7 @@ public class Luola {
     }
     
     /**
-     * 
+     * Palauttaa valmiiksi alustetun luolan näyttöö varten
      * @return 
      */
     public SubScene luoLuola() {

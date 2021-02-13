@@ -13,12 +13,22 @@ public class Luolasto {
     AnchorPane pane;
     boolean ensimmainen;
     
+    /**
+     * Pitää yllä luolien joukkoa
+     * @param n montako luolaa luolastoon
+     */
     public Luolasto(int n) {
         this.n = n;
         this.luolat = new ArrayList<>();
     }
     
-    
+    /**
+     * Alustaa luolan näyttöä varten
+     * @param korkeus jokaisen luolan korkeus
+     * @param leveys jokaisen luolan leveys
+     * @param vali algoritmeihin tarvittava luku, joka määrittää mm. kuinka tiheästi seinät ovat pakattu
+     * @param p pane luolaston esittelyä varten
+     */
     public void louLuolasto(int korkeus, int leveys, int vali, AnchorPane p) {
         this.pane = p;
         LehmerRng rand = new LehmerRng(System.nanoTime() % System.currentTimeMillis());
@@ -36,9 +46,16 @@ public class Luolasto {
             edellinen = seed;
         }
         lisaaJokaiselleLuolalleSeuraavaLuola();
-        
     }
     
+    /**
+     * Visualisoi luolien määrän. Tällä hetkellä satunnaisesti mutta tarkoituksena luoda parempi toteutus
+     * @param y luolan sijainnin y
+     * @param x luolan sijainnin x
+     * @param i tarvitaan ensimmäisen ja vikan luolan erotteluun
+     * @param p luolaston pane
+     * @param l yksittäinen luola luolastossa
+     */
     public void lisaaPisteLuola(int y, int x, int i, AnchorPane p, Luola l) {
         Circle c = new Circle(x, y, 8);
         if (i == 0) {
@@ -53,6 +70,9 @@ public class Luolasto {
         p.getChildren().add(c);
     }
     
+    /**
+     * Lisää jokaiselle luolalle muistiin seuraavan luolan numeron, jotta voidaan kulkea luolasta toiseen
+     */
     public void lisaaJokaiselleLuolalleSeuraavaLuola() {
         ArrayList<Luola> uusiLuolasto = new ArrayList<>();
         for (int i = 0; i < luolat.size() - 1; i++) {
