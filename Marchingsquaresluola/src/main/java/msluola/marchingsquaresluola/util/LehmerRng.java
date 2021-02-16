@@ -1,4 +1,4 @@
-package msluola.marchingsquaresluola.generaattorit;
+package msluola.marchingsquaresluola.util;
 
 /**
  * 

@@ -5,10 +5,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import msluola.marchingsquaresluola.generaattorit.Soluautomaatti;
-import msluola.marchingsquaresluola.generaattorit.MarchingSquaresViivat;
-import msluola.marchingsquaresluola.generaattorit.LehmerRng;
-import msluola.marchingsquaresluola.generaattorit.Mst;
+import msluola.marchingsquaresluola.util.Soluautomaatti;
+import msluola.marchingsquaresluola.util.MarchingSquaresViivat;
+import msluola.marchingsquaresluola.util.LehmerRng;
+import msluola.marchingsquaresluola.util.Mst;
 
 /**
  *

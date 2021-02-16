@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import msluola.marchingsquaresluola.generaattorit.LehmerRng;
+import msluola.marchingsquaresluola.util.LehmerRng;
 
 public class Luolasto {
     ArrayList<Luola>luolat;

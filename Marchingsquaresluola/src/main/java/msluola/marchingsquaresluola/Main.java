@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.scene.SubScene;
 import javafx.stage.Stage;
-import msluola.marchingsquaresluola.generaattorit.Mst;
+import msluola.marchingsquaresluola.util.Mst;
 import msluola.marchingsquaresluola.gui.LuolaGui;
 import msluola.marchingsquaresluola.luola.Luola;
 

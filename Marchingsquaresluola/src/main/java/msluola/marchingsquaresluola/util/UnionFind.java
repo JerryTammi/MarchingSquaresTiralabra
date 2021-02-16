@@ -1,5 +1,5 @@
 
-package msluola.marchingsquaresluola.generaattorit;
+package msluola.marchingsquaresluola.util;
 
 public class UnionFind {
     int n;
