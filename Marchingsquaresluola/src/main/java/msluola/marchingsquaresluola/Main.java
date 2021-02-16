@@ -19,17 +19,6 @@ public class Main extends Application {
     }
     
     public static void main(String[] args) {
-//        Luola l = new Luola(1000,1000,20, (long)100);
-//        SubScene  s = l.luoLuola();
-//        Mst mst = new Mst();
-//        int[][]taulu = l.haeTaulukko();
-//        for (int i = 0; i < taulu.length; i++) {
-//            for (int j = 0; j < taulu[0].length; j++) {
-//                System.out.print(taulu[i][j] + " ");
-//            } 
-//            System.out.println("");
-//        }
-//        mst.linkita(taulu);
         launch(args);
     }
 }

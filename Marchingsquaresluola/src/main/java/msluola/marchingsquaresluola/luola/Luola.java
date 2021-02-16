@@ -1,16 +1,14 @@
 package msluola.marchingsquaresluola.luola;
 
-import java.io.FileNotFoundException;
 import javafx.scene.SubScene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import msluola.marchingsquaresluola.generaattorit.Soluautomaatti;
 import msluola.marchingsquaresluola.generaattorit.MarchingSquaresViivat;
 import msluola.marchingsquaresluola.generaattorit.LehmerRng;
+import msluola.marchingsquaresluola.generaattorit.Mst;
 
 /**
  *
@@ -88,9 +86,11 @@ public class Luola {
         pisteet = l.luoTaulu();
         
         Soluautomaatti sa = new Soluautomaatti();
-        for (int i = 0; i < 10; i++) {
-            this.pisteet = sa.muunna(pisteet);
-        } 
+        for (int i = 0; i < 15; i++) {
+            pisteet = sa.muunna(pisteet);
+        }
+        Mst m = new Mst();
+        pisteet = m.linkita(pisteet);
     }
     
     /**
@@ -178,7 +178,7 @@ public class Luola {
     /**
      * 
      * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
-     * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo viivan ja 
+     * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo seinän ja 
         lopuksi lisää sen paneen.
      * @param pisteet pisteiden taulukko
      * @param ikkuna ikkuna johon kaikki piirretään
