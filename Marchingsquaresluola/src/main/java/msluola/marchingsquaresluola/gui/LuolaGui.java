@@ -95,7 +95,6 @@ public class LuolaGui {
             }
         });
         
-        
         siirryLuoliin.setOnAction(e -> {
             luolaScene = new Scene(rootLuola, 2100, 1000);
             rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), s);

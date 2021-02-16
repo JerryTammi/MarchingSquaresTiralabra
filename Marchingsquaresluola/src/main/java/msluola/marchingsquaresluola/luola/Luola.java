@@ -149,6 +149,12 @@ public class Luola {
         return pisteet;
     }
     
+    public void asetaTaulukko(int[][]taulu) {
+        this.pisteet = taulu;
+    }
+    
+    
+    
     /**
      * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
         auttaa visualisoimaan algoritmia.
