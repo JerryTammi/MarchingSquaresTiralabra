@@ -1,9 +1,5 @@
 package msluola.marchingsquaresluola.util;
 
-/**
- * 
- * @author Jerry
- */
 public class LehmerRng {
     long seed;
     int[][]pisteet;
@@ -24,6 +20,10 @@ public class LehmerRng {
         long uusiSeed = (a * seed) % m;
         seed = uusiSeed;
         return uusiSeed;
+    }
+    
+    public int[][]haePisteet() {
+        return pisteet;
     }
     
     public int[][] luoTaulu() {
