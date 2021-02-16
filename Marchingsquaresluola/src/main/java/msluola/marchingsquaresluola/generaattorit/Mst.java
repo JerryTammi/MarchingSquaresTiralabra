@@ -46,4 +46,8 @@ public class Mst {
             kompSyvyys(y, x - 1);
         }
     }
+    
+    public void yhdistaKomp() {
+        
+    }
 }
