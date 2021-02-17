@@ -30,7 +30,7 @@ public class LuolaGui {
     
     public void alustaAlkutoimet() {
         AnchorPane rootAsetukset = new AnchorPane();
-        TextField luolienMaaraMaaritys = new TextField("1000");
+        TextField luolienMaaraMaaritys = new TextField("50");
         Button luolienMaaraMaaritysNappi = new Button("Montako luolaa?");
         
         luolienMaaraMaaritys.setLayoutX(25);
@@ -51,8 +51,8 @@ public class LuolaGui {
             }
             if (!virhe) {
                 luolienMaara = Integer.parseInt(lukumaara);
-                if (luolienMaara > 100000) {
-                    luolienMaara = 100000;
+                if (luolienMaara > 10000) {
+                    luolienMaara = 10000;
                 }
                 if (luolienMaara < 2) {
                     luolienMaara = 2;

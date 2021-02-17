@@ -27,7 +27,6 @@ public class Mst {
         pisteidenvalit = new ArrayList<>();
         
         laskeHuoneet();
-        
         yhdistaHuoneet();
         muodostaKaytavat();
         return pisteet;
@@ -72,7 +71,7 @@ public class Mst {
                 if (!verkko[i][j]) {
                     int[]pisteB = aloituspisteet.get(j);
                     int etaisyys = ((pisteA[0] - pisteB[0]) > 0 ? (pisteA[0] - pisteB[0]) : -(pisteA[0] - pisteB[0])) + 
-                                          ((pisteA[1] - pisteB[1]) > 0 ? (pisteA[1] - pisteB[1]) : -(pisteA[1] - pisteB[1]));
+                            ((pisteA[1] - pisteB[1]) > 0 ? (pisteA[1] - pisteB[1]) : -(pisteA[1] - pisteB[1]));
 
                     pisteidenvalit.add(new int[]{pisteA[0], pisteA[1], pisteB[0], pisteB[1], etaisyys, i, j});
                     verkko[i][j] = true;
@@ -106,10 +105,7 @@ public class Mst {
         int xAloitus = pisteA[1];
         int xLoppu = pisteB[1];
         
-        if (yAloitus == yLoppu) {
-            
-        }
-        else if (yAloitus < yLoppu) {
+        if (yAloitus <= yLoppu) {
             for (int i = yAloitus; i <= yLoppu; i++) {
                 pisteet[i][xAloitus] = 0;
                 if(rndMuutos() && xAloitus > 1) {
@@ -132,10 +128,7 @@ public class Mst {
             }
         }
         
-        if (xAloitus == xLoppu) {
-            
-        }
-        else if (xAloitus < xLoppu) {
+        if (xAloitus <= xLoppu) {
             for (int i = xAloitus; i <= xLoppu; i++) {
                 pisteet[yLoppu][i] = 0;
                 if(rndMuutos() && yAloitus > 1) {

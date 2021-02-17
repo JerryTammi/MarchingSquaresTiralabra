@@ -20,9 +20,6 @@ public class Luola {
     int korkeus;
     int vali;
     int[][]pisteet;
-    Hahmo hahmo;
-    int alkuAloituspiste;
-    int loppuAloituspiste;
     long omaSeed;
     long edellinenSeed;
     long seuraavaSeed;
