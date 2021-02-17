@@ -44,22 +44,7 @@ public class Soluautomaatti {
         }
         return uudetPisteet;
     }
-    
-    /**
-     * Poistaa yhden pisteen seinät ja varmistaa, että taulukon reunat ovat seiniä.
-     * 
-     * @param pisteet Muokattava taulukko.
-     */
-    private void siivoaTaulukko(int[][]pisteet) {
-        for (int i = 0; i < pisteet.length; i++) {
-            for (int j = 0; j < pisteet[0].length; j++) {
-                if (i < 1 || i == pisteet.length - 1 || j < 1 || j == pisteet[0].length - 1) {
-                    pisteet[i][j] = 1;
-                }
-            }
-        }
-    }
-    
+        
     /**
      * Laskee montako pistettä pisteen x,y ympärillä on.
      * 
