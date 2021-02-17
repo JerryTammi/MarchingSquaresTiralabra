@@ -7,7 +7,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
-public class MarchingSquaresViivat {
+public class MarchingSquares {
         
     /**
      *  Erottaa seinät ja lattian luolassa. 

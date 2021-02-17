@@ -13,26 +13,23 @@ public class Mst {
     boolean[][]verkko;
     int kaytavat;
     
-    public Mst() {
+    public Mst(int[][]pisteet) {
         huoneet = 0;
         kaytavat = 0;
-    }
-    
-    
-    public int[][] linkita(int[][]pisteet) {
         this.pisteet = pisteet;
         kayty = new boolean[pisteet.length][pisteet[0].length]; 
-        this.pisteet = pisteet;
         aloituspisteet = new ArrayList<>();
         pisteidenvalit = new ArrayList<>();
-        
+    }
+    
+    public int[][] linkita() {
         laskeHuoneet();
         yhdistaHuoneet();
         muodostaKaytavat();
         return pisteet;
     }
     
-    private void laskeHuoneet() {
+    public void laskeHuoneet() {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (pisteet[i][j] == 0 && !kayty[i][j]) {
@@ -44,7 +41,7 @@ public class Mst {
         }
     }
     
-    private void kompSyvyys(int y, int x) {
+    public void kompSyvyys(int y, int x) {
         if (y > pisteet.length - 1 || x > pisteet[0].length - 1 || y < 1 || x < 1) {
             return;
         }
@@ -53,8 +50,8 @@ public class Mst {
         }
         if (pisteet[y][x] == 0 && !kayty[y][x]) {
             kayty[y][x] = true;
-            kompSyvyys(y + 1, x );
-            kompSyvyys(y - 1, x );
+            kompSyvyys(y + 1, x);
+            kompSyvyys(y - 1, x);
             kompSyvyys(y, x + 1);
             kompSyvyys(y, x - 1);
         }

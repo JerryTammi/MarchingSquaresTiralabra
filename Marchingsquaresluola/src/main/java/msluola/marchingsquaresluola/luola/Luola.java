@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import msluola.marchingsquaresluola.util.Soluautomaatti;
-import msluola.marchingsquaresluola.util.MarchingSquaresViivat;
+import msluola.marchingsquaresluola.util.MarchingSquares;
 import msluola.marchingsquaresluola.util.LehmerRng;
 import msluola.marchingsquaresluola.util.Mst;
 
@@ -86,8 +86,8 @@ public class Luola {
         for (int i = 0; i < 15; i++) {
             pisteet = sa.muunna(pisteet);
         }
-        Mst m = new Mst();
-        pisteet = m.linkita(pisteet);
+        Mst m = new Mst(pisteet);
+        pisteet = m.linkita();
     }
     
     /**
@@ -139,18 +139,20 @@ public class Luola {
     }
     
     /**
-     * Metodi, joka palauttaa taulukon.
+     * Palauttaa taulukon.
      * @return 
      */
     public int[][] haeTaulukko() {
         return pisteet;
     }
     
+    /**
+     * Asettaa taulukon.
+     * @param taulu 
+     */
     public void asetaTaulukko(int[][]taulu) {
         this.pisteet = taulu;
     }
-    
-    
     
     /**
      * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
@@ -182,7 +184,7 @@ public class Luola {
      * @param vali pisteiden väli
      */
     public void lisaaSeinat() {
-        MarchingSquaresViivat msv = new MarchingSquaresViivat();
+        MarchingSquares msv = new MarchingSquares();
         msv.lisaaSeinat(pisteet, ikkuna, vali);
     }
     

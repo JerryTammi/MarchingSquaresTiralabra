@@ -57,7 +57,7 @@ public class LuolaGui {
                 }
                 luoLuolasto(luolienMaara);
                 stage.setScene(luolaScene);
-                stage.show();
+                stage.centerOnScreen();
             }
         });
         
