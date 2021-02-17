@@ -158,7 +158,7 @@ public class Luola {
      * @param pisteet pisteiden taulukko
      * @param ikkuna ikkuna johon kaikki piirretään
      */
-    public void lisaaPisteet(int[][]pisteet, Pane ikkuna, int vali) {
+    public void lisaaPisteet() {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 Circle c = new Circle(j * vali, i * vali, 3);

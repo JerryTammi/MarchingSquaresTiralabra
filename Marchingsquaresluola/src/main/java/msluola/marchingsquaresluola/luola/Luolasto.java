@@ -7,8 +7,6 @@ import msluola.marchingsquaresluola.util.LehmerRng;
 public class Luolasto {
     ArrayList<Luola>luolat;
     int n;
-    AnchorPane pane;
-    boolean ensimmainen;
     
     /**
      * Pitää yllä luolien joukkoa

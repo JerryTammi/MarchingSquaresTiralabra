@@ -16,8 +16,6 @@ public class LuolaGui {
     Scene luolaScene;
     Scene luolastoScene;
     Scene asetusScene;
-    Text vanhaAika;
-    Text uusiAika;
     Luola luola;
     int utilityPaikka;
     int luolienMaara;
@@ -74,9 +72,7 @@ public class LuolaGui {
         utility.setLayoutX(35);
         utility.setLayoutY(25);
         Button seuraavaLuolaNappi = new Button("Seuraava luola");
-        Button edellinnenLuolaNappi = new Button("Edellinen luola");
-        edellinnenLuolaNappi.setLayoutY(seuraavaLuolaNappi.getLayoutY() + 50);
-        utility.getChildren().addAll(seuraavaLuolaNappi, edellinnenLuolaNappi);
+        utility.getChildren().addAll(seuraavaLuolaNappi);
         SubScene s = new SubScene(utility, 200, 1000);
         s.setLayoutX(1920);
         
@@ -94,17 +90,6 @@ public class LuolaGui {
                 nykyinenLuola = seuraavaLuola;
             }
         });
-        
-//        edellinnenLuolaNappi.setOnAction(e -> {
-//            int index = luolasto.haeLuolasto().indexOf(nykyinenLuola);
-//            if (index > 0) {
-//                Luola edellinenLuola = luolasto.haeLuolasto().get(index - 1);
-//                rootLuola.getChildren().remove(0);
-//                rootLuola.getChildren().add(0, edellinenLuola.luoLuola());
-//                nykyinenLuola = edellinenLuola;
-//                
-//            }
-//        });
     }
     
     public Scene haeAsetusScene() {
