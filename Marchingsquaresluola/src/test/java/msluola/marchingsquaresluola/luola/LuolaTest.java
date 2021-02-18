@@ -67,10 +67,19 @@ public class LuolaTest {
     }
     
     @Test
-    public void testiTarkistaEttaSeinatLisataan() {
+    public void testiTarkistaEttaPisteetLisataan() {
         l.luoTaulukko();
         int kokoAlussa = l.haePane().getChildren().size();
         l.lisaaPisteet();
+        int kokoLopussa = l.haePane().getChildren().size();
+        assertEquals(false, kokoAlussa == kokoLopussa);
+    }
+    
+    @Test
+    public void testiTarkistaEttaSeinatLisataan() {
+        l.luoTaulukko();
+        int kokoAlussa = l.haePane().getChildren().size();
+        l.lisaaSeinat();
         int kokoLopussa = l.haePane().getChildren().size();
         assertEquals(false, kokoAlussa == kokoLopussa);
     }

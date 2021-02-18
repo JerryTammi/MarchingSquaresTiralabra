@@ -10,17 +10,16 @@ public class MstTest {
     int[][]pisteet;
     Luola l;
     Long seed;
-    LehmerRng rng;
-    Soluautomaatti s;
     boolean[][]kayty;
+    LehmerRng rng;
     
     @Before
     public void setUp() {
+        seed = (long)1337;
         pisteet = new int[100][100];
-        seed = System.nanoTime();
         rng = new LehmerRng(pisteet, seed);
         pisteet = rng.luoTaulu();
-        s = new Soluautomaatti();
+        Soluautomaatti s = new Soluautomaatti();
         for (int i = 0; i < 15; i++) {
             pisteet = s.muunna(pisteet);
         }
@@ -28,14 +27,15 @@ public class MstTest {
         kayty = new boolean[100][100];
     }
     
+    
     @Test
     public void testiLuolanHuoneidenMaaraAlussa() {
         mst.laskeHuoneet();
-        boolean onko = false;
+        boolean onko = true;
         if (mst.haeHuoneet() < 4 || mst.haeHuoneet() > 100) {
-            onko = true;
+            onko = false;
         }
-        assertEquals(false, onko);
+        assertEquals(true, onko);
     }
     
     @Test

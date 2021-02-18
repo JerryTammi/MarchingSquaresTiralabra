@@ -11,15 +11,14 @@ public class Mst {
     ArrayList<int[]>aloituspisteet;
     ArrayList<int[]>pisteidenvalit;
     boolean[][]verkko;
-    int kaytavat;
     
     public Mst(int[][]pisteet) {
-        huoneet = 0;
-        kaytavat = 0;
         this.pisteet = pisteet;
-        kayty = new boolean[pisteet.length][pisteet[0].length]; 
+        huoneet = 0;
         aloituspisteet = new ArrayList<>();
+        kayty = new boolean[pisteet.length][pisteet[0].length]; 
         pisteidenvalit = new ArrayList<>();
+        verkko = new boolean[aloituspisteet.size()][aloituspisteet.size()];
     }
     
     public int[][] linkita() {
@@ -30,6 +29,9 @@ public class Mst {
     }
     
     public void laskeHuoneet() {
+        huoneet = 0;
+        aloituspisteet = new ArrayList<>();
+        kayty = new boolean[pisteet.length][pisteet[0].length]; 
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (pisteet[i][j] == 0 && !kayty[i][j]) {
@@ -57,7 +59,8 @@ public class Mst {
         }
     }
     
-    private void yhdistaHuoneet() {
+    public void yhdistaHuoneet() {
+        pisteidenvalit = new ArrayList<>();
         verkko = new boolean[aloituspisteet.size()][aloituspisteet.size()];
         for (int i = 0; i < aloituspisteet.size(); i++) {
             int[]pisteA = aloituspisteet.get(i);
@@ -79,7 +82,7 @@ public class Mst {
         Collections.sort(pisteidenvalit, valiVertailu);
     }
     
-    private void muodostaKaytavat() {
+    public void muodostaKaytavat() {
         UnionFind uf = new UnionFind(aloituspisteet.size());
         for (int i = 0; i < pisteidenvalit.size(); i++) {
             if (uf.kompMaara() <= 1) {
@@ -96,7 +99,7 @@ public class Mst {
         }
     }
     
-    private void muutaKaytavaksi(int[] pisteA, int[]pisteB) {
+    public void muutaKaytavaksi(int[] pisteA, int[]pisteB) {
         int yAloitus = pisteA[0];
         int yLoppu = pisteB[0];
         int xAloitus = pisteA[1];
@@ -147,13 +150,12 @@ public class Mst {
                 }
             }
         }
-        
     }
     
-    private boolean rndMuutos() {
+    public boolean rndMuutos() {
         boolean toteutuuko = false;
         LehmerRng rnd = new LehmerRng(System.nanoTime());
-        if (rnd.lehmer() % 512 > 200) {
+        if ((rnd.lehmer() % 512) > 256) {
             toteutuuko = true;
         }
         return toteutuuko;

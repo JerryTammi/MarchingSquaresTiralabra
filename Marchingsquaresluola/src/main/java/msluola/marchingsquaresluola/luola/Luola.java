@@ -79,8 +79,8 @@ public class Luola {
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
     public void luoTaulukko() {
-        LehmerRng l = new LehmerRng(pisteet, omaSeed);
-        pisteet = l.luoTaulu();
+        LehmerRng rng = new LehmerRng(pisteet, omaSeed);
+        pisteet = rng.luoTaulu();
         
         Soluautomaatti sa = new Soluautomaatti();
         for (int i = 0; i < 15; i++) {
