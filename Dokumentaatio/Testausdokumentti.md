@@ -1,5 +1,16 @@
 # Testausdokumentti
 
+Testit komennolla
+```
+mvn test
+```
+Testikattavuusraportti komennolla
+
+```
+mvn jacoco:report
+```
+Raportti sijaitsee: "target/site/jacoco/index.html"
+
 ## Ohjelman testikattavuus
 
 ![testikattavuus](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Kuvat/testikattavuusyleinen.png)
