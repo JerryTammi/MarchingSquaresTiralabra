@@ -13,7 +13,7 @@ public class LehmerRngTest {
     @Before
     public void setUp() {
         pisteet = new int[100][100];
-        seed = System.nanoTime();
+        seed = System.nanoTime() % 1337;
         rng1 = new LehmerRng(pisteet, seed);
         rng2 = new LehmerRng(seed);
     }

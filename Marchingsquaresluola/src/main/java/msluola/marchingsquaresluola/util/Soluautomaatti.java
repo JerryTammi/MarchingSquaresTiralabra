@@ -4,8 +4,8 @@ public class Soluautomaatti {
     
     /** 
      * Luodaan uusi taulukko, jota muokataan alkuperäisen taulukkon pohjalta ja lopuksi korvaa sen.
-     * Uusi taulukko luodaan sitä varten että kun edetään taulukoss, muokatut pisteet eivät vaikuta
-     * muokattaviin pisteisiin. Se käy läpi jokaisen pisteen, tarkistaa montako vieruspisteistä on seinä
+     * Uusi taulukko luodaan sitä varten että kun edetään taulukossa, muokatut pisteet eivät vaikuta
+     * muokattaviin pisteisiin. Se käy läpi jokaisen pisteen, tarkistaa kuinka moni vieruspisteistä on seinä
      * ja muokkaa sen seinäksi, jos se on suurempi kuin aste. Mitä suurempi aste, sitä avonnaisempi luola.
      * Tällä hetkellä asteet 2-4 ovat käytännölliset. 
      * 
@@ -53,7 +53,7 @@ public class Soluautomaatti {
      * @param pisteet Taristeltava taulukko
      * @return Palauttaa montako pistettä pisteen x,y ympärillä on.
      */
-    private int vierusSeinat(int y, int x, int[][]pisteet) {
+    public int vierusSeinat(int y, int x, int[][]pisteet) {
         int seinat = 0;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {

@@ -154,8 +154,8 @@ public class Mst {
     
     public boolean rndMuutos() {
         boolean toteutuuko = false;
-        LehmerRng rnd = new LehmerRng(System.nanoTime());
-        if ((rnd.lehmer() % 512) > 256) {
+        LehmerRng rnd = new LehmerRng(System.nanoTime() % 1337);
+        if ((rnd.lehmer() % 512) > 180) {
             toteutuuko = true;
         }
         return toteutuuko;

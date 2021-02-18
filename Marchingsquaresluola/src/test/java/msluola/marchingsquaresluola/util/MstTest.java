@@ -8,14 +8,13 @@ import org.junit.Test;
 public class MstTest {
     Mst mst;
     int[][]pisteet;
-    Luola l;
     Long seed;
     boolean[][]kayty;
     LehmerRng rng;
     
     @Before
     public void setUp() {
-        seed = (long)1337;
+        seed = System.nanoTime() % 1337;
         pisteet = new int[100][100];
         rng = new LehmerRng(pisteet, seed);
         pisteet = rng.luoTaulu();
