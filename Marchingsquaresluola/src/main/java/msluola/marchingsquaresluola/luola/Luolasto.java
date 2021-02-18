@@ -1,7 +1,6 @@
 package msluola.marchingsquaresluola.luola;
 
 import java.util.ArrayList;
-import javafx.scene.layout.AnchorPane;
 import msluola.marchingsquaresluola.util.LehmerRng;
 
 public class Luolasto {
@@ -22,10 +21,9 @@ public class Luolasto {
      * @param korkeus jokaisen luolan korkeus
      * @param leveys jokaisen luolan leveys
      * @param vali algoritmeihin tarvittava luku, joka määrittää mm. kuinka tiheästi seinät ovat pakattu
-     * @param p pane luolaston esittelyä varten
      */
     public void louLuolasto(int korkeus, int leveys, int vali) {
-        LehmerRng rand = new LehmerRng(System.nanoTime() % System.currentTimeMillis());
+        LehmerRng rand = new LehmerRng(System.nanoTime() % 1337);
         long edellinen = 0;
         for (int i = 0; i < n; i++) {
             Long seed = rand.lehmer() % 100000;
@@ -34,8 +32,6 @@ public class Luolasto {
                 l.asetaEdellinenSeed(edellinen);
             }
             luolat.add(l);
-            int x = (vali * 5) + (int)(rand.lehmer() % (leveys - (vali * 10)));
-            int y = (vali * 5) + (int)(rand.lehmer() % (korkeus - (vali * 10)));
             edellinen = seed;
         }
         lisaaJokaiselleLuolalleSeuraavaLuola();
@@ -58,6 +54,10 @@ public class Luolasto {
     
     public ArrayList<Luola> haeLuolasto() {
         return luolat;
+    }
+    
+    public int luolastonKoko() {
+        return luolat.size();
     }
     
 }
