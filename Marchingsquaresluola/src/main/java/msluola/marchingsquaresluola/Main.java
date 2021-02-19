@@ -2,11 +2,8 @@ package msluola.marchingsquaresluola;
 
 import java.io.FileNotFoundException;
 import javafx.application.Application;
-import javafx.scene.SubScene;
 import javafx.stage.Stage;
-import msluola.marchingsquaresluola.util.Mst;
 import msluola.marchingsquaresluola.gui.LuolaGui;
-import msluola.marchingsquaresluola.luola.Luola;
 
 public class Main extends Application {
     
