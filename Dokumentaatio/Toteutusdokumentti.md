@@ -1,5 +1,7 @@
 # Toteutusdokumentti
 
+(Väliaikainen toteutusdokumentti, parempi tulossa pian)
+
 ### Ohjelman yleisrakenne
 
 * Gui
