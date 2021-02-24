@@ -1,6 +1,7 @@
 package msluola.marchingsquaresluola.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -8,36 +9,33 @@ public class Mst {
     int[][]pisteet;
     boolean[][]kayty;
     int huoneet;
-    ArrayList<int[]>aloituspisteet;
-    ArrayList<int[]>pisteidenvalit;
+    Lista ap;
+    Lista pv;
     boolean[][]verkko;
     
     public Mst(int[][]pisteet) {
         this.pisteet = pisteet;
         huoneet = 0;
-        aloituspisteet = new ArrayList<>();
         kayty = new boolean[pisteet.length][pisteet[0].length]; 
-        pisteidenvalit = new ArrayList<>();
-        verkko = new boolean[aloituspisteet.size()][aloituspisteet.size()];
+        ap = new Lista(2);
+        pv = new Lista(7);
     }
     
     public int[][] linkita() {
         laskeHuoneet();
         yhdistaHuoneet();
-        muodostaKaytavat();
         return pisteet;
     }
     
     public void laskeHuoneet() {
         huoneet = 0;
-        aloituspisteet = new ArrayList<>();
         kayty = new boolean[pisteet.length][pisteet[0].length]; 
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (pisteet[i][j] == 0 && !kayty[i][j]) {
                     huoneet++;
                     kompSyvyys(i, j);
-                    aloituspisteet.add(new int[]{i,j});
+                    ap.add(new int[]{i,j});
                 }
             }
         }
@@ -60,35 +58,36 @@ public class Mst {
     }
     
     public void yhdistaHuoneet() {
-        pisteidenvalit = new ArrayList<>();
-        verkko = new boolean[aloituspisteet.size()][aloituspisteet.size()];
-        for (int i = 0; i < aloituspisteet.size(); i++) {
-            int[]pisteA = aloituspisteet.get(i);
-            for (int j = 0; j < aloituspisteet.size(); j++) {
+        int apKoko = ap.haeIndex() + 1;
+        verkko = new boolean[apKoko][apKoko];
+        for (int i = 0; i < apKoko; i++) {
+            int[]pisteA = ap.palautaOsio(i);
+            for (int j = 0; j < apKoko; j++) {
                 if (i == j) {
                     continue;
                 }
                 if (!verkko[i][j]) {
-                    int[]pisteB = aloituspisteet.get(j);
+                    int[]pisteB = ap.palautaOsio(j);
                     int etaisyys = ((pisteA[0] - pisteB[0]) > 0 ? (pisteA[0] - pisteB[0]) : -(pisteA[0] - pisteB[0])) + 
                             ((pisteA[1] - pisteB[1]) > 0 ? (pisteA[1] - pisteB[1]) : -(pisteA[1] - pisteB[1]));
 
-                    pisteidenvalit.add(new int[]{pisteA[0], pisteA[1], pisteB[0], pisteB[1], etaisyys, i, j});
+                    pv.add(new int[]{pisteA[0], pisteA[1], pisteB[0], pisteB[1], etaisyys, i, j});
                     verkko[i][j] = true;
                     verkko[j][i] = true;
                 }
             }
         }
-        Collections.sort(pisteidenvalit, valiVertailu);
+        pv.jarjesta(0, pv.haeIndex(), 4);
+        muodostaKaytavat();
     }
     
     public void muodostaKaytavat() {
-        UnionFind uf = new UnionFind(aloituspisteet.size());
-        for (int i = 0; i < pisteidenvalit.size(); i++) {
+        UnionFind uf = new UnionFind(ap.index + 1);
+        for (int i = 0; i < pv.haeIndex() + 1; i++) {
             if (uf.kompMaara() <= 1) {
                 break;
             }
-            int[]kaari = pisteidenvalit.get(i);
+            int[]kaari = pv.palautaOsio(i);
             int[] aloitusPiste = new int[]{kaari[0], kaari[1], kaari[5]};
             int[] loppuPiste = new int[]{kaari[2], kaari[3], kaari[6]};
             if (uf.edustaja(aloitusPiste[2]) == uf.edustaja(loppuPiste[2])) {

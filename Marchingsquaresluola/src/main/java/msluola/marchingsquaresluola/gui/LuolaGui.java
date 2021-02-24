@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import msluola.marchingsquaresluola.luola.Luola;
 import msluola.marchingsquaresluola.luola.Luolasto;
@@ -14,12 +14,14 @@ import msluola.marchingsquaresluola.luola.Luolasto;
 public class LuolaGui {
     Stage stage;
     Scene luolaScene;
-    Scene luolastoScene;
     Scene asetusScene;
     Luola luola;
     int utilityPaikka;
     int luolienMaara;
     Luola nykyinenLuola;
+    Luolasto luolasto;
+    AnchorPane rootLuola;
+    boolean saakoLisataPisteet;
     
     public LuolaGui(Stage stage) {
         this.stage = stage;
@@ -66,30 +68,45 @@ public class LuolaGui {
     }
     
     public void luoLuolasto(int n) {
-        AnchorPane rootLuola = new AnchorPane();
+        rootLuola = new AnchorPane();
         luolaScene = new Scene(rootLuola, 2100, 1000);
+                
+        luolasto = new Luolasto(n);
+        luolasto.louLuolasto(1000, 1920, 20);
+        nykyinenLuola = luolasto.haeLuolasto().get(0);
+        rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
+    }
+    
+    public SubScene utilityScene() {
         Pane utility = new Pane();
         utility.setLayoutX(35);
         utility.setLayoutY(25);
+        
         Button seuraavaLuolaNappi = new Button("Seuraava luola");
-        utility.getChildren().addAll(seuraavaLuolaNappi);
+        Button luolaPisteet = new Button("Näytä pisteet");
+        luolaPisteet.setLayoutY(seuraavaLuolaNappi.getLayoutY() + 50);
+        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet);
+        
         SubScene s = new SubScene(utility, 200, 1000);
         s.setLayoutX(1920);
-        
-        Luolasto luolasto = new Luolasto(n);
-        luolasto.louLuolasto(1000, 1920, 20);
-        nykyinenLuola = luolasto.haeLuolasto().get(0);
-        rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), s);
         
         seuraavaLuolaNappi.setOnAction(e -> {
             int index = luolasto.haeLuolasto().indexOf(nykyinenLuola);
             if (index < luolasto.haeLuolasto().size() - 1) {
                 Luola seuraavaLuola = luolasto.haeLuolasto().get(index + 1);
-                rootLuola.getChildren().remove(0);
-                rootLuola.getChildren().add(0, seuraavaLuola.luoLuola());
                 nykyinenLuola = seuraavaLuola;
+                rootLuola.getChildren().clear();
+                rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
             }
         });
+        saakoLisataPisteet = true;
+        luolaPisteet.setOnAction(e -> {
+            if (saakoLisataPisteet) {
+                nykyinenLuola.lisaaPisteet(rootLuola);
+                saakoLisataPisteet = false;
+            }
+        });
+        return s;
     }
     
     public Scene haeAsetusScene() {
