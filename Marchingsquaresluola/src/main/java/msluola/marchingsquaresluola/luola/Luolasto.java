@@ -1,19 +1,26 @@
 package msluola.marchingsquaresluola.luola;
 
-import java.util.ArrayList;
 import msluola.marchingsquaresluola.util.LehmerRng;
+import msluola.marchingsquaresluola.util.Lista;
 
 public class Luolasto {
-    ArrayList<Luola>luolat;
+    Lista lista;
     int n;
+    int index;
+    int korkeus;
+    int leveys;
+    int vali;
+    boolean onnistuuko;
     
     /**
-     * Pitää yllä luolien joukkoa
+     * Pitää yllä luolien joukkoa.
      * @param n montako luolaa luolastoon
      */
     public Luolasto(int n) {
         this.n = n;
-        this.luolat = new ArrayList<>();
+        lista = new Lista(1);
+        index = 0;
+        onnistuuko = true;
     }
     
     /**
@@ -22,42 +29,36 @@ public class Luolasto {
      * @param leveys jokaisen luolan leveys
      * @param vali algoritmeihin tarvittava luku, joka määrittää mm. kuinka tiheästi seinät ovat pakattu
      */
-    public void louLuolasto(int korkeus, int leveys, int vali) {
+    public void luoLuolasto(int korkeus, int leveys, int vali) {
+        this.korkeus = korkeus;
+        this.leveys = leveys;
+        this.vali = vali;
         LehmerRng rand = new LehmerRng(System.nanoTime() % 1337);
         long edellinen = 0;
         for (int i = 0; i < n; i++) {
-            Long seed = rand.lehmer() % 100000;
-            Luola l = new Luola(korkeus, leveys, vali, seed);
-            if (i > 0) {
-                l.asetaEdellinenSeed(edellinen);
-            }
-            luolat.add(l);
-            edellinen = seed;
+            Long seed = rand.lehmer() % 10000;
+            int luku = seed.intValue();
+            lista.add(new int[]{luku});
         }
-        lisaaJokaiselleLuolalleSeuraavaLuola();
+    }
+    
+    /**
+     * Generoi uuden luolan.
+     * @return uusi luola
+     */
+    public Luola uusiLuola() {
+        int[]seed = lista.palautaOsio(index);
+        long luku = (long)seed[0];
+        Luola luola = new Luola(korkeus, leveys, vali, luku);
+        index++;
+        return luola;
     }
         
-    /**
-     * Lisää jokaiselle luolalle muistiin seuraavan luolan numeron, jotta voidaan kulkea luolasta toiseen
-     */
-    public void lisaaJokaiselleLuolalleSeuraavaLuola() {
-        ArrayList<Luola> uusiLuolasto = new ArrayList<>();
-        for (int i = 0; i < luolat.size() - 1; i++) {
-            Luola l1 = luolat.get(i);
-            Luola l2 = luolat.get(i+1);
-            l1.asetaSeuraavaSeed(l2.haeOmaSeed());
-            uusiLuolasto.add(l1);
-        }
-        uusiLuolasto.add(luolat.get(luolat.size()-1));
-        luolat = uusiLuolasto;
+    public Lista haeLista() {
+        return lista;
     }
     
-    public ArrayList<Luola> haeLuolasto() {
-        return luolat;
+    public int haeIndex() {
+        return index;
     }
-    
-    public int luolastonKoko() {
-        return luolat.size();
-    }
-    
 }

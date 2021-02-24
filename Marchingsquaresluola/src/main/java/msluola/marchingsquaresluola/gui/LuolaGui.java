@@ -21,6 +21,7 @@ public class LuolaGui {
     Luolasto luolasto;
     AnchorPane rootLuola;
     boolean saakoLisataPisteet;
+    int n;
     
     public LuolaGui(Stage stage) {
         this.stage = stage;
@@ -67,12 +68,13 @@ public class LuolaGui {
     }
     
     public void luoLuolasto(int n) {
+        this.n = n;
         rootLuola = new AnchorPane();
         luolaScene = new Scene(rootLuola, 2100, 1000);
                 
         luolasto = new Luolasto(n);
-        luolasto.louLuolasto(1000, 1920, 20);
-        nykyinenLuola = luolasto.haeLuolasto().get(0);
+        luolasto.luoLuolasto(1000, 1920, 20);
+        nykyinenLuola = luolasto.uusiLuola();
         rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
     }
     
@@ -90,10 +92,9 @@ public class LuolaGui {
         s.setLayoutX(1920);
         
         seuraavaLuolaNappi.setOnAction(e -> {
-            int index = luolasto.haeLuolasto().indexOf(nykyinenLuola);
-            if (index < luolasto.haeLuolasto().size() - 1) {
-                Luola seuraavaLuola = luolasto.haeLuolasto().get(index + 1);
-                nykyinenLuola = seuraavaLuola;
+            if (luolasto.haeIndex() < n) {
+                Luola uusiLuola = luolasto.uusiLuola();
+                nykyinenLuola = uusiLuola;
                 rootLuola.getChildren().clear();
                 rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
             }

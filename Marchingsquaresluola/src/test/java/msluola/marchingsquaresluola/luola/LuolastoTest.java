@@ -15,8 +15,19 @@ public class LuolastoTest {
     }
     
     @Test
-    public void testiTarkistaEttaLuolatLuodaan() {
-        l.louLuolasto(1000, 1000, 20);
-        assertEquals(koko, l.luolastonKoko());
+    public void testiOikeaKoko() {
+        l.luoLuolasto(1000 , 1920, 20);
+        assertEquals(50, l.haeLista().haeIndex() + 1);
+    }
+    
+    @Test
+    public void testiTarkistaLuola() {
+        l.luoLuolasto(1000 , 1920, 20);
+        Luola uusiLuola = l.uusiLuola();
+        boolean kaikkiKunnossa = true;
+        if (uusiLuola.haeKorkeus() != 1000 || uusiLuola.haeLeveys() != 1920 || uusiLuola.haeVali() != 20) {
+            kaikkiKunnossa = false;
+        }
+        assertEquals(true, kaikkiKunnossa);
     }
 }
