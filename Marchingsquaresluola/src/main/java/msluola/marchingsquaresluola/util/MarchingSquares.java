@@ -1,6 +1,5 @@
 package msluola.marchingsquaresluola.util;
 
-import java.awt.Color;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;

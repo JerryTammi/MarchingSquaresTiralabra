@@ -24,8 +24,11 @@ public class Lista {
             }
             lista = uusiLista;
         }
-        if (koko >= 65536) {
-            System.out.println("Lista täynnä");
+        // Lista täynnä
+        if (koko > 65536) {
+            return;
+        }
+        if (t.length != n) {
             return;
         }
         for (int i = 0; i < t.length; i++) {
@@ -65,14 +68,14 @@ public class Lista {
     public int[] palautaOsio(int i) {
         return lista[i];
     }
-    
-    public int[][] palauta() {
-        return lista;
-    }
-    
+        
     public int haeIndex() {
+        if (index == 0) {
+            return 0;
+        }
         return index - 1;
     }
+    
     
     public void tulosta() {
         for (int i = 0; i < index; i++) {

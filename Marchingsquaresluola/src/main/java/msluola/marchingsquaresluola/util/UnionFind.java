@@ -1,4 +1,3 @@
-
 package msluola.marchingsquaresluola.util;
 
 public class UnionFind {

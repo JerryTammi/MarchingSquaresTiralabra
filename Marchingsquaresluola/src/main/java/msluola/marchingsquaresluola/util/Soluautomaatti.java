@@ -10,7 +10,6 @@ public class Soluautomaatti {
      * Tällä hetkellä asteet 2-4 ovat käytännölliset. 
      * 
      * @param pisteet Luolan alkuperäinen taulukko.
-     * @param aste Kuinka voimakas muutos taulukkoon.
      * @return Palauttaa muokatun taulukon.
      */
     public int[][] muunna(int[][]pisteet) {
