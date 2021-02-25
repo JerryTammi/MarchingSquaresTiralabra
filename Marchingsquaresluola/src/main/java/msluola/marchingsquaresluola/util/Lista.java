@@ -25,7 +25,7 @@ public class Lista {
             lista = uusiLista;
         }
         // Lista täynnä
-        if (koko > 65536) {
+        if (koko > 131072) {
             return;
         }
         if (t.length != n) {
@@ -36,6 +36,7 @@ public class Lista {
         }
         index++;
     }
+    
     
     public void jarjesta(int a, int b, int i) {
         if (i > n) {

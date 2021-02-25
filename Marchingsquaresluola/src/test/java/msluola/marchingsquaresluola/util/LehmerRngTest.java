@@ -47,6 +47,7 @@ public class LehmerRngTest {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (pisteet[i][j] < 0 || pisteet[i][j] > 1) {
                     onkoYksiTaiNolla = false;
+                    break;
                 }
             }
         }

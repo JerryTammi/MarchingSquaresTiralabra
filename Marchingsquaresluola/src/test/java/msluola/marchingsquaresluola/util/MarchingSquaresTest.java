@@ -18,7 +18,7 @@ public class MarchingSquaresTest {
         msv = new MarchingSquares();
         binLuvut = new String[]{"0000", "0001", "0010", "0100", "1000", "1100", "1010", "1001", 
                                               "0110", "0101", "0011", "0111", "1011", "1101", "1110", "1111"};
-        l = new Luola(1000, 1000, 20, System.nanoTime());
+        l = new Luola(1000, 1000, 20, System.nanoTime(), 2);
         vali = 20;
     }
     

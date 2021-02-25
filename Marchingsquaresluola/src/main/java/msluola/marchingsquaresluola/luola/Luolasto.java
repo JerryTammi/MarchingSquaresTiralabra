@@ -44,12 +44,13 @@ public class Luolasto {
     
     /**
      * Generoi uuden luolan.
+     * @param kumpi valitaan luolan tyyppi
      * @return uusi luola
      */
-    public Luola uusiLuola() {
+    public Luola uusiLuola(int tyyppi) {
         int[]seed = lista.palautaOsio(index);
         long luku = (long)seed[0];
-        Luola luola = new Luola(korkeus, leveys, vali, luku);
+        Luola luola = new Luola(korkeus, leveys, vali, luku, tyyppi);
         index++;
         return luola;
     }

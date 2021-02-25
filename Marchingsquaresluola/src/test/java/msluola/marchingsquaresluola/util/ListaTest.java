@@ -86,9 +86,9 @@ public class ListaTest {
     @Test
     public void testiLiikaaArvojaListaan() {
         int[]testi1 = new int[]{1, 1, 1};
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 200000; i++) {
             l.add(testi1);
         }
-        assertEquals(65535, l.haeIndex() + 1);
+        assertEquals(131071, l.haeIndex() + 1);
     }
 }

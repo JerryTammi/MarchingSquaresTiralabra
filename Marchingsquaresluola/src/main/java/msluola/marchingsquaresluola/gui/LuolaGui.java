@@ -3,6 +3,7 @@ package msluola.marchingsquaresluola.gui;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -22,15 +23,17 @@ public class LuolaGui {
     AnchorPane rootLuola;
     boolean saakoLisataPisteet;
     int n;
+    int tyyppi;
     
     public LuolaGui(Stage stage) {
         this.stage = stage;
+        tyyppi = 2;
         alustaAlkutoimet();
     }
     
     public void alustaAlkutoimet() {
         AnchorPane rootAsetukset = new AnchorPane();
-        TextField luolienMaaraMaaritys = new TextField("50");
+        TextField luolienMaaraMaaritys = new TextField("100");
         Button luolienMaaraMaaritysNappi = new Button("Montako luolaa?");
         
         luolienMaaraMaaritys.setLayoutX(25);
@@ -42,6 +45,10 @@ public class LuolaGui {
             String lukumaara = luolienMaaraMaaritys.getText();
             char[]chars = lukumaara.toCharArray();
             boolean virhe = false;
+            if (chars.length > 8) {
+                virhe = true;
+                System.out.println("Liian suuri numero");
+            }
             for (int i = 0; i < chars.length; i++) {
                 if (!Character.isDigit(chars[i])) {
                     virhe = true;
@@ -51,8 +58,8 @@ public class LuolaGui {
             }
             if (!virhe) {
                 luolienMaara = Integer.parseInt(lukumaara);
-                if (luolienMaara > 10000) {
-                    luolienMaara = 10000;
+                if (luolienMaara > 100000) {
+                    luolienMaara = 100000;
                 }
                 if (luolienMaara < 2) {
                     luolienMaara = 2;
@@ -74,7 +81,7 @@ public class LuolaGui {
                 
         luolasto = new Luolasto(n);
         luolasto.luoLuolasto(1000, 1920, 20);
-        nykyinenLuola = luolasto.uusiLuola();
+        nykyinenLuola = luolasto.uusiLuola(tyyppi);
         rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
     }
     
@@ -85,15 +92,19 @@ public class LuolaGui {
         
         Button seuraavaLuolaNappi = new Button("Seuraava luola");
         Button luolaPisteet = new Button("Näytä pisteet");
+        Slider slider = haeSlider(tyyppi);
         luolaPisteet.setLayoutY(seuraavaLuolaNappi.getLayoutY() + 50);
-        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet);
+        slider.setLayoutY(luolaPisteet.getLayoutY() + 50);
+        slider.setLayoutX(slider.getLayoutX() - 10);
+        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet, slider);
         
         SubScene s = new SubScene(utility, 200, 1000);
         s.setLayoutX(1920);
         
         seuraavaLuolaNappi.setOnAction(e -> {
             if (luolasto.haeIndex() < n) {
-                Luola uusiLuola = luolasto.uusiLuola();
+                tyyppi = (int)slider.getValue();
+                Luola uusiLuola = luolasto.uusiLuola(tyyppi);
                 nykyinenLuola = uusiLuola;
                 rootLuola.getChildren().clear();
                 rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene());
@@ -107,6 +118,14 @@ public class LuolaGui {
             }
         });
         return s;
+    }
+    
+    public Slider haeSlider(int missa) {
+        Slider slider = new Slider(1, 3, missa);
+        slider.setMajorTickUnit(1);
+        slider.setMinorTickCount(0);
+        slider.setSnapToTicks(true);
+        return slider;
     }
     
     public Scene haeAsetusScene() {

@@ -19,7 +19,7 @@ public class MstTest {
         pisteet = rng.luoTaulu();
         Soluautomaatti s = new Soluautomaatti();
         for (int i = 0; i < 15; i++) {
-            pisteet = s.muunna(pisteet);
+            pisteet = s.muunna(pisteet, 2);
         }
         mst = new Mst(pisteet);
         kayty = new boolean[100][100];

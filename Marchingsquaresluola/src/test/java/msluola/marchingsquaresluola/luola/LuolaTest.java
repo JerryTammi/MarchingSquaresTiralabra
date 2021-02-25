@@ -19,7 +19,7 @@ public class LuolaTest {
         vali = 20;
         pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
         ikkuna = new Pane();
-        l = new Luola(leveys, korkeus, vali, System.nanoTime());
+        l = new Luola(leveys, korkeus, vali, System.nanoTime(), 2);
     }
     
     @Test

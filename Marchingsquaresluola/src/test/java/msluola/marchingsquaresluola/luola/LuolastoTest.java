@@ -23,7 +23,7 @@ public class LuolastoTest {
     @Test
     public void testiTarkistaLuola() {
         l.luoLuolasto(1000 , 1920, 20);
-        Luola uusiLuola = l.uusiLuola();
+        Luola uusiLuola = l.uusiLuola(2);
         boolean kaikkiKunnossa = true;
         if (uusiLuola.haeKorkeus() != 1000 || uusiLuola.haeLeveys() != 1920 || uusiLuola.haeVali() != 20) {
             kaikkiKunnossa = false;

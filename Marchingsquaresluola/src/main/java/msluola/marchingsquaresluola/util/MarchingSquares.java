@@ -10,9 +10,9 @@ public class MarchingSquares {
         
     /**
      *  Erottaa seinät ja lattian luolassa. 
-     * @param pisteet
-     * @param ikkuna
-     * @param vali 
+     * @param pisteet Luolan pisteet
+     * @param ikkuna Luolan pane
+     * @param vali Luolan pisteiden väli
      */
     public void lisaaSeinat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {

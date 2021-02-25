@@ -43,7 +43,7 @@ public class SoluautomaattiTest {
             }
         }
         for (int i = 0; i < 15; i++) {
-            pisteet = s.muunna(pisteet);
+            pisteet = s.muunna(pisteet, 2);
         }
         
         boolean onkoErilainen = false;

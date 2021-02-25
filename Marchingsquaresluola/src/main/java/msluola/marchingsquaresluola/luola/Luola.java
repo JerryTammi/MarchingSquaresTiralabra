@@ -22,16 +22,16 @@ public class Luola {
     int vali;
     int[][]pisteet;
     long omaSeed;
-    long edellinenSeed;
-    long seuraavaSeed;
+    int tyyppi;
     
     /**
      *
      * @param leveys Ikkunan leveys
      * @param korkeus Ikkunan korkeus
      * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
+     * @param seed Luolan oma seed
      */
-    public Luola(int korkeus, int leveys, int vali, long seed) {
+    public Luola(int korkeus, int leveys, int vali, long seed, int tyyppi) {
         ikkuna = new Pane();
         ikkuna.setBackground(Background.EMPTY);
         this.leveys = leveys;
@@ -39,6 +39,7 @@ public class Luola {
         this.vali = vali;
         this.pisteet = new int[(korkeus / vali) + 1][(leveys / vali) + 1];
         omaSeed = seed;
+        this.tyyppi = tyyppi;
     }
     
     /**
@@ -48,20 +49,19 @@ public class Luola {
     public void luoTaulukko() {
         LehmerRng rng = new LehmerRng(pisteet, omaSeed);
         pisteet = rng.luoTaulu();
-        
         Soluautomaatti sa = new Soluautomaatti();
-        for (int i = 0; i < 15; i++) {
-            pisteet = sa.muunna(pisteet);
+        for (int i = 0; i < 10; i++) {
+            pisteet = sa.muunna(pisteet, tyyppi);
         }
         Mst m = new Mst(pisteet);
         pisteet = m.linkita();
+        pisteet = sa.siivous(pisteet);
     }
     
     /**
      * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
         auttaa visualisoimaan algoritmia.
-     * @param pisteet pisteiden taulukko
-     * @param ikkuna ikkuna johon kaikki piirretään
+     * @param a anchorpane jossa pisteet halutessa esitetään
      */
     public void lisaaPisteet(AnchorPane a) {
         for (int i = 0; i < pisteet.length; i++) {
@@ -82,9 +82,6 @@ public class Luola {
      * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
      * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo seinän ja 
         lopuksi lisää sen paneen.
-     * @param pisteet pisteiden taulukko
-     * @param ikkuna ikkuna johon kaikki piirretään
-     * @param vali pisteiden väli
      */
     public void lisaaSeinat() {
         MarchingSquares msv = new MarchingSquares();
@@ -93,7 +90,7 @@ public class Luola {
     
     /**
      * Palauttaa valmiiksi alustetun luolan näyttöö varten
-     * @return 
+     * @return scene luolan esitystä varten
      */
     public SubScene luoLuola() {
         luoTaulukko();
@@ -137,23 +134,23 @@ public class Luola {
     
     /**
      * Muistaa oman numeron
-     * @param seed 
+     * @param seed Luolan numero
      */
     public void asetaOmaSeed(long seed) {
         omaSeed = seed;
     }
     
     /**
-     * Hakee oman numeron
-     * @return 
+     * 
+     * @return Hakee oman numeron
      */
     public long haeOmaSeed() {
         return omaSeed;
     }
     
     /**
-     * Palauttaa taulukon.
-     * @return 
+     * 
+     * @return Palauttaa taulukon.
      */
     public int[][] haeTaulukko() {
         return pisteet;
@@ -161,7 +158,7 @@ public class Luola {
     
     /**
      * Asettaa taulukon.
-     * @param taulu 
+     * @param taulu Luolan taulu
      */
     public void asetaTaulukko(int[][]taulu) {
         this.pisteet = taulu;
