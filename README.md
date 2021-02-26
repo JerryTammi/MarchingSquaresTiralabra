@@ -22,6 +22,14 @@ Viikkoraportit
 
 ## Komentorivitoiminnot
 
+###
+
+Ohjelma käynnistyy komennolla
+
+```
+mvn compile exec:java -Dexec.mainClass=msluola.marchingsquaresluola.Main
+```
+
 ### Testaus
 
 Testit komennolla
