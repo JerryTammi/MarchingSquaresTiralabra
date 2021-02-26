@@ -135,24 +135,24 @@ public class MarchingSquares {
     public void luoSeina(int luku, int x, int y, Pane p, int vali) {
         if (luku < 1) {
             return;
-        }
-        else if (luku == 1) {
+            
+        } else if (luku == 1) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x), new Double(y + (vali / 2)), new Double(x + (vali / 2)), new Double(y + vali), 
                 new Double(x), new Double(y + vali)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 2) {
+            
+        } else if (luku == 2) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x + (vali / 2)), new Double(y + vali), new Double(x + vali), new Double(y + (vali / 2)), 
                 new Double(x + vali), new Double(y + vali)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 3) {
+            
+        } else if (luku == 3) {
             Rectangle seinanPalanen = new Rectangle();
             seinanPalanen.setX(x);
             seinanPalanen.setY(y + (vali / 2));
@@ -160,16 +160,16 @@ public class MarchingSquares {
             seinanPalanen.setHeight(vali / 2);
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 4) {
+            
+        } else if (luku == 4) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y + (vali / 2)), 
                 new Double(x + vali), new Double(y)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 5) {
+            
+        } else if (luku == 5) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y),
@@ -177,8 +177,8 @@ public class MarchingSquares {
                 new Double(x), new Double(y + vali), new Double(x), new Double(y + (vali / 2))});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 6) {
+            
+        } else if (luku == 6) {
             Rectangle seinanPalanen = new Rectangle();
             seinanPalanen.setX(x + (vali / 2));
             seinanPalanen.setY(y);
@@ -186,8 +186,8 @@ public class MarchingSquares {
             seinanPalanen.setHeight(vali);
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 7) {
+            
+        } else if (luku == 7) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x + (vali / 2)), new Double(y), new Double(x + vali), new Double(y), 
@@ -195,16 +195,16 @@ public class MarchingSquares {
                 new Double(x), new Double(y + (vali / 2))});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 8) {
+            
+        } else if (luku == 8) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x + (vali / 2)), new Double(y), new Double(x), new Double(y + (vali / 2)), 
                 new Double(x), new Double(y)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 9) {
+            
+        } else if (luku == 9) {
             Rectangle seinanPalanen = new Rectangle();
             seinanPalanen.setX(x);
             seinanPalanen.setY(y);
@@ -212,8 +212,8 @@ public class MarchingSquares {
             seinanPalanen.setHeight(vali);
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 10) {
+            
+        } else if (luku == 10) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x), new Double(y), new Double(x + (vali / 2)), new Double(y), 
@@ -221,8 +221,8 @@ public class MarchingSquares {
                 new Double(x + (vali / 2)), new Double(y + vali), new Double(x), new Double(y + (vali / 2))});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 11) {
+            
+        } else if (luku == 11) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x), new Double(y), new Double(x + (vali / 2)), new Double(y), 
@@ -230,8 +230,8 @@ public class MarchingSquares {
                 new Double(x), new Double(y + vali)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 12) {
+            
+        } else if (luku == 12) {
             Rectangle seinanPalanen = new Rectangle();
             seinanPalanen.setX(x);
             seinanPalanen.setY(y);
@@ -239,8 +239,8 @@ public class MarchingSquares {
             seinanPalanen.setHeight(vali / 2);
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 13) {
+            
+        } else if (luku == 13) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x), new Double(y), new Double(x + vali), new Double(y), 
@@ -248,8 +248,8 @@ public class MarchingSquares {
                 new Double(x), new Double(y + vali)});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 14) {
+            
+        } else if (luku == 14) {
             Polygon seinanPalanen = new Polygon();
             seinanPalanen.getPoints().addAll(new Double[]{
                 new Double(x), new Double(y), new Double(x + vali), new Double(y), 
@@ -257,8 +257,8 @@ public class MarchingSquares {
                 new Double(x), new Double(y + (vali / 2))});
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku == 15) {
+            
+        } else if (luku == 15) {
             Rectangle seinanPalanen = new Rectangle();
             seinanPalanen.setX(x);
             seinanPalanen.setY(y);
@@ -266,8 +266,8 @@ public class MarchingSquares {
             seinanPalanen.setHeight(vali);
             seinanPalanen.setFill(Paint.valueOf("#3f3a2a"));
             p.getChildren().add(seinanPalanen);
-        }
-        else if (luku > 15) {
+            
+        } else if (luku > 15) {
             return;
         }
     }

@@ -31,11 +31,9 @@ public class LehmerRng {
             for (int j = 0; j < pisteet[0].length; j++) {
                 if (i < 1 || i == pisteet.length - 1 || j < 1 || j == pisteet[0].length - 1) {
                     pisteet[i][j] = 1;
-                }
-                else if ((lehmer() % 256) >  115) {
+                } else if ((lehmer() % 256) >  115) {
                     pisteet[i][j] = 1;
-                }
-                else {
+                } else {
                     pisteet[i][j] = 0;
                 }
             }

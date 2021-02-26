@@ -3,13 +3,14 @@ package msluola.marchingsquaresluola.util;
 public class Soluautomaatti {
     LehmerRng rng;
     /** 
-     * Luodaan uusi taulukko, jota muokataan alkuperäisen taulukkon pohjalta ja lopuksi korvaa sen.
-     * Uusi taulukko luodaan sitä varten että kun edetään taulukossa, muokatut pisteet eivät vaikuta
-     * muokattaviin pisteisiin. Se käy läpi jokaisen pisteen, tarkistaa kuinka moni vieruspisteistä on seinä
-     * ja muokkaa sen seinäksi, jos se on suurempi kuin aste. Mitä suurempi aste, sitä avonnaisempi luola.
-     * Tällä hetkellä asteet 2-4 ovat käytännölliset. 
+     * Luodaan uusi taulukko, jota muokataan alkuperäisen taulukkon pohjalta ja lopuksi korvaa sen.Uusi taulukko luodaan sitä varten että kun edetään taulukossa, muokatut pisteet eivät vaikuta
+        muokattaviin pisteisiin.
+     * Se käy läpi jokaisen pisteen, tarkistaa kuinka moni vieruspisteistä on seinä
+        ja muokkaa sen seinäksi, jos se on suurempi kuin aste. Mitä suurempi aste, sitä avonnaisempi luola.
+        Tällä hetkellä asteet 2-4 ovat käytännölliset. 
      * 
      * @param pisteet Luolan alkuperäinen taulukko.
+     * @param tyyppi Luolan ulkonäköön vaikuttava parametri.
      * @return Palauttaa muokatun taulukon.
      */
     public int[][] muunna(int[][]pisteet, int tyyppi) {
@@ -41,16 +42,13 @@ public class Soluautomaatti {
                 if (pisteet[i][j] == 1) {
                     if (seinat < aste) {
                         uudetPisteet[i][j] = 0;
-                    }
-                    else {
+                    } else {
                         uudetPisteet[i][j] = 1;
                     }
-                }
-                else {
+                } else {
                     if (seinat > (8 - aste)) {
                         uudetPisteet[i][j] = 1;
-                    }
-                    else {
+                    } else {
                         uudetPisteet[i][j] = 0;
                     }
                 }
@@ -74,11 +72,10 @@ public class Soluautomaatti {
                 int naapuriY = y + i;
                 int naapuriX = x + j;
                 if (i == 0 && j == 0) {
-                }
-                else if (naapuriY < 0 || naapuriX < 0 || naapuriY >= pisteet.length - 1 || naapuriX >= pisteet[0].length) {
+                    
+                } else if (naapuriY < 0 || naapuriX < 0 || naapuriY >= pisteet.length - 1 || naapuriX >= pisteet[0].length) {
                     seinat++;
-                }
-                else if (pisteet[naapuriY][naapuriX] == 1) {
+                } else if (pisteet[naapuriY][naapuriX] == 1) {
                     seinat++;
                 }
             }

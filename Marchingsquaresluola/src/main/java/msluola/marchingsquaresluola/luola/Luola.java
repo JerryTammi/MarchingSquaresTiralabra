@@ -30,6 +30,7 @@ public class Luola {
      * @param korkeus Ikkunan korkeus
      * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
      * @param seed Luolan oma seed
+     * @param tyyppi Vaikuttaa luolan ulkonäköön. Kolme mahdollista vaihtoehtoa.
      */
     public Luola(int korkeus, int leveys, int vali, long seed, int tyyppi) {
         ikkuna = new Pane();
@@ -98,6 +99,19 @@ public class Luola {
         SubScene scene = new SubScene(ikkuna, haeLeveys(), haeKorkeus());
         scene.setFill(Color.TEAL);
         return scene;
+    }
+    
+    /**
+     * Tulostaa luolan.
+     */
+    public void tulostaLuola() {
+        System.out.println();
+        for (int i = 0; i < pisteet.length; i++) {
+            for (int  j = 0; j < pisteet[0].length; j++) {
+                System.out.print(pisteet[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
     
     /**

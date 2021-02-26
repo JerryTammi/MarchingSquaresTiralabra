@@ -49,7 +49,7 @@ public class Luolasto {
      */
     public Luola uusiLuola(int tyyppi) {
         int[]seed = lista.palautaOsio(index);
-        long luku = (long)seed[0];
+        long luku = (long) seed[0];
         Luola luola = new Luola(korkeus, leveys, vali, luku, tyyppi);
         index++;
         return luola;

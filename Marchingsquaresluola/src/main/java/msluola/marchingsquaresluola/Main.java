@@ -9,8 +9,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Marching squares");
-        LuolaGui luolagui = new LuolaGui(stage);
-        stage.setScene(luolagui.haeAsetusScene());
+        LuolaGui gui = new LuolaGui(stage);
+        stage.setScene(gui.haeAsetusScene());
         stage.show();
     }
     

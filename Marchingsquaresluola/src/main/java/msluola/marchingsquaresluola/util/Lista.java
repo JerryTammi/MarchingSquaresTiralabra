@@ -47,7 +47,7 @@ public class Lista {
         }
         int k = jako(a, b, i);
         jarjesta(a, k - 1, i);
-        jarjesta(k+1, b, i);
+        jarjesta(k + 1, b, i);
     }
     
     public int jako(int a, int b, int i) {

@@ -29,7 +29,7 @@ public class UnionFind {
             b = t;
         }
         vanhempi[b] = a;
-        koko[a]+= koko[b];
+        koko[a] += koko[b];
         maara--;
     }
     
