@@ -1,5 +1,7 @@
 # Marching Squares luolastogeneraattori
 
+Ohjelma koodattu Java 8:lla.
+
 ## Dokumentaatio
 
 [Määrittelydokumentti](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/M%C3%A4%C3%A4rittelydokumentti.md)
@@ -16,8 +18,17 @@ Viikkoraportit
   - [Viikkoraportti 3](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/viikkoraportti3.md)
   - [Viikkoraportti 4](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/viikkoraportti4.md)
   - [Viikkoraportti 5](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/viikkoraportti5.md)
+  - [Viikkoraportti 6](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/viikkoraportti6.md)
 
 ## Komentorivitoiminnot
+
+###
+
+Ohjelma käynnistyy komennolla
+
+```
+mvn compile exec:java -Dexec.mainClass=msluola.marchingsquaresluola.Main
+```
 
 ### Testaus
 
