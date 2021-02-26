@@ -113,13 +113,15 @@ public class LuolaGui {
                 System.out.println("Liian suuri numero");
             }
             
-            if (Integer.parseInt(luolanLeveys) > 1920 || Integer.parseInt(luolanLeveys) < 500) {
-                virhe = true;
-                System.out.println("Luolan leveyden minimiarvo on 500 ja maksimiarvo on 1920.");
-            }
-            if (Integer.parseInt(luolanKorkeus) > 1000 || Integer.parseInt(luolanKorkeus) < 500) {
-                virhe = true;
-                System.out.println("Luolan korkeuden minimiarvo on 500 ja maksimiarvo on 1000.");
+            if (!virhe) {
+                if (Integer.parseInt(luolanLeveys) > 1920 || Integer.parseInt(luolanLeveys) < 500) {
+                    virhe = true;
+                    System.out.println("Luolan leveyden minimiarvo on 500 ja maksimiarvo on 1920.");
+                }
+                if (Integer.parseInt(luolanKorkeus) > 1000 || Integer.parseInt(luolanKorkeus) < 500) {
+                    virhe = true;
+                    System.out.println("Luolan korkeuden minimiarvo on 500 ja maksimiarvo on 1000.");
+                }
             }
             
             if (!virhe) {
@@ -133,7 +135,7 @@ public class LuolaGui {
                 if (luolienMaara < 2) {
                     luolienMaara = 2;
                 }
-                luoLuolastoUi(luolienMaara, leveys, korkeus, vali);
+                luoLuolastoUi(luolienMaara, korkeus, leveys, vali);
                 stage.setScene(luolaScene);
                 stage.centerOnScreen();
             }
@@ -205,6 +207,7 @@ public class LuolaGui {
         palaaAsetuksiin.setOnAction(e -> {
             Scene uudetAsetukset = alustaAlkutoimet();
             stage.setScene(uudetAsetukset);
+            stage.centerOnScreen();
         });
         return s;
     }
