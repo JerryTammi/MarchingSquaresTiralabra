@@ -23,12 +23,14 @@ Gui- ja Main -luokat eivät kuulu testaukseen.
 
 #### Tärkeimmät testit
   - Luolan taulukko luodaan oikein eikä sisällä kiellettyjä numeroita.
-  - Marching squares -algoritmi toimii oikein lisäämällä luolan seinien palaset oikeisiin paikkoihin. Se myös tarkistaa ettei tuu kiellettyjä lukuja.
+  - Marching squares -algoritmi toimii oikein lisäämällä luolan seinien palaset oikeisiin paikkoihin. Se myös tarkistaa ettei esiinny kiellettyjä lukuja.
   - Tarkistetaan että muodostetaan oikea määrä huoneita luolaan.
   - Tarkistetaan että luolan huoneiden yhdistämisen jälkeen luolassa ei ole huoneita, jotka eivät ole liitettynä muihin. 
   - Soluautomaatti tarkistaa solun vierussolut oikein 
 
 ### Luolan/luolaston testaus
+
+Luolan testikattavuus näyttää paljon huonommalta kuin todellisuudessa. Luolan taulukon tulostusta tai pisteiden esittäistä ei ole testattu.
 
 ![testikattavuusluola](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Kuvat/testikattavuusluola.png)
 
