@@ -90,7 +90,7 @@ public class Luola {
     }
     
     /**
-     * Palauttaa valmiiksi alustetun luolan näyttöö varten
+ * Palauttaa valmiiksi alustetun luolan näyttöä varten
      * @return scene luolan esitystä varten
      */
     public SubScene luoLuola() {
