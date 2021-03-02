@@ -10,7 +10,7 @@ Ohjelma koodattu Java 8:lla.
 
 [Testausdokumentti](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Testausdokumentti.md)
 
-Käyttöohje
+[Käyttöohje](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/Käyttöohje.md)
 
 Viikkoraportit
   - [Viikkoraportti 1](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/viikkoraportti1.md)
