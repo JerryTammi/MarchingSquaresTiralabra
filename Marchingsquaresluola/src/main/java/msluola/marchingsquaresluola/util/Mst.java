@@ -1,5 +1,8 @@
 package msluola.marchingsquaresluola.util;
 
+/**
+ *  Huolehtii luolan huoneiden linkityksestä Kruskalin algoritmin avulla. 
+ */
 public class Mst {
     int[][]pisteet;
     boolean[][]kayty;
@@ -8,6 +11,9 @@ public class Mst {
     Lista pisteidenValit;
     boolean[][]verkko;
     
+    /**
+     * @param pisteet Luolan taulukko.
+     */
     public Mst(int[][]pisteet) {
         this.pisteet = pisteet;
         huoneet = 0;
@@ -16,12 +22,19 @@ public class Mst {
         pisteidenValit = new Lista(7);
     }
     
+    /**
+     * Linkittää luolan huoneet.
+     * @return Luolan taulukko.
+     */
     public int[][] linkita() {
         laskeHuoneet();
         yhdistaHuoneet();
         return pisteet;
     }
     
+    /**
+     * Laskee huoneiden määrän ja lisää aloituspisteet listaan. Aina kun löytyy uusi huone aloitetaan syvyyshaku, jolla varmistetaan ettei löydetä huonetta jossa ollaan jo käyty.
+     */
     public void laskeHuoneet() {
         huoneet = 0;
         kayty = new boolean[pisteet.length][pisteet[0].length]; 
@@ -36,6 +49,11 @@ public class Mst {
         }
     }
     
+    /**
+     * Syvyyshaku, jolla käydään läpi luolan huoneita.
+     * @param y Tarkisteltavan pisteen y.
+     * @param x Tarkisteltavan pisteen x.
+     */
     public void kompSyvyys(int y, int x) {
         if (y > pisteet.length - 1 || x > pisteet[0].length - 1 || y < 1 || x < 1) {
             return;
@@ -52,6 +70,11 @@ public class Mst {
         }
     }
     
+    /**
+     * Yhdistää luolan huoneet. Aloittaa tarkistelemalla aloituspisteet, jotka se yhdistää toisiinsa.
+     * Tämän jälkeen järjestää listan jotta lyhimmät polut ovat ekana ja aloittaa Kruskalilla yhdistämään huoneita
+     * kunnes jokainen huone on yhdistetty.
+     */
     public void yhdistaHuoneet() {
         int apKoko = aloituspisteet.haeIndex() + 1;
         verkko = new boolean[apKoko][apKoko];
@@ -76,6 +99,9 @@ public class Mst {
         muodostaKaytavat();
     }
     
+    /**
+     * Muodostaa aloitus- ja loppupisteen joiden väli yhdistetään.
+     */
     public void muodostaKaytavat() {
         UnionFind uf = new UnionFind(aloituspisteet.index + 1);
         for (int i = 0; i < pisteidenValit.haeIndex() + 1; i++) {
@@ -92,7 +118,11 @@ public class Mst {
             muutaKaytavaksi(aloitusPiste, loppuPiste);
         }
     }
-    
+    /**
+     * Muuttaa halutun välin käytäväksi kahden huoneen välillä.
+     * @param pisteA Käytävän aloituspiste.
+     * @param pisteB Käytävän loppupiste.
+     */
     public void muutaKaytavaksi(int[] pisteA, int[]pisteB) {
         int yAloitus = pisteA[0];
         int yLoppu = pisteB[0];
@@ -143,7 +173,11 @@ public class Mst {
             }
         }
     }
-        
+    
+    /**
+     * Arpoo muokataanko huoneiden välistä käytävää.
+     * @return True jos muokataan, false jos ei.
+     */    
     public boolean rndMuutos() {
         boolean toteutuuko = false;
         LehmerRng rnd = new LehmerRng(System.nanoTime() % 1337);
@@ -153,6 +187,9 @@ public class Mst {
         return toteutuuko;
     }
     
+    /**
+     * @return Palauttaa huoneiden määrän.
+     */
     public int haeHuoneet() {
         return huoneet;
     }

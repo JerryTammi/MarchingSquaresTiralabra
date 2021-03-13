@@ -6,13 +6,15 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Vastaa luolan ulkonäöstä. 
+ */
 public class MarchingSquares {
-        
     /**
-     *  Erottaa seinät ja lattian luolassa. 
-     * @param pisteet Luolan pisteet
-     * @param ikkuna Luolan pane
-     * @param vali Luolan pisteiden väli
+     * Erottaa seinät ja lattian luolassa. 
+     * @param pisteet Luolan pisteet.
+     * @param ikkuna Luolan pane.
+     * @param vali Luolan pisteiden väli.
      */
     public void lisaaSeinat(int[][]pisteet, Pane ikkuna, int vali) {
         for (int i = 0; i < pisteet.length - 1; i++) {
@@ -32,11 +34,8 @@ public class MarchingSquares {
         }
     }
     /**
-     * 
      * Metodi muuntaa binäärinumeron tavalliseksi numeroksi 0 - 15 väliltä. 
-     * 
-     * @param luku Binaarinumero, joka on generoitu pisteet -taulukon sisällöstä riippuen missä kohtaa
-     * ollaan. Esimerkiksi "1111" tai "1011"
+     * @param luku Binaarinumero, joka on generoitu pisteet -taulukon sisällöstä riippuen missä kohtaa  ollaan. Esimerkiksi "1111" tai "1011"
      * @return Tavallinen numero, joka vastaa binäärinumeroa. Esimerkiksi "1111" muuttuu 15.
      */
     public int binaariMuuntaminen(String luku) {
@@ -45,9 +44,7 @@ public class MarchingSquares {
     }
     
     /**
-     * 
      * Metodi luo viivan annetun tiedon perusteella ja lisää sen paneen. 
-     * 
      * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään vektorin
      * generoimisessa.
      * @param x Piste x ikkunassa.
@@ -125,12 +122,11 @@ public class MarchingSquares {
     
     /**
      *  Samanlainen idea kuin luoViiva:ssa mutta täyttää seinän 
-     * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään polygonin
-     * generoimisessa.
+     * @param luku Muutettu binäärinumero, jotta saadaan tieto mihin vaihtoehtoon päädytään polygonin generoimisessa.
      * @param x Piste x ikkunassa.
      * @param y Piste y ikkunassa.
-     * @param p Pane johon viivat sijoitetaan.
-     * @param vali luolan tiheyden määrittävä luku.
+     * @param p Pane johon seinät sijoitetaan.
+     * @param vali Luolan tiheyden määrittävä luku.
      */
     public void luoSeina(int luku, int x, int y, Pane p, int vali) {
         if (luku < 1) {

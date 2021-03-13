@@ -1,14 +1,16 @@
 package msluola.marchingsquaresluola.util;
 
+/**
+ * Käy läpi jokaisen pisteen, tarkistaa kuinka moni vieruspisteistä on seinä
+        ja muokkaa sen seinäksi, jos se on suurempi kuin aste. Mitä suurempi aste, sitä avonnaisempi luola.
+        Tällä hetkellä asteet 3-5 ovat käytännölliset. 
+ */
 public class Soluautomaatti {
     LehmerRng rng;
+    
     /** 
      * Luodaan uusi taulukko, jota muokataan alkuperäisen taulukkon pohjalta ja lopuksi korvaa sen.Uusi taulukko luodaan sitä varten että kun edetään taulukossa, muokatut pisteet eivät vaikuta
         muokattaviin pisteisiin.
-     * Se käy läpi jokaisen pisteen, tarkistaa kuinka moni vieruspisteistä on seinä
-        ja muokkaa sen seinäksi, jos se on suurempi kuin aste. Mitä suurempi aste, sitä avonnaisempi luola.
-        Tällä hetkellä asteet 2-4 ovat käytännölliset. 
-     * 
      * @param pisteet Luolan alkuperäinen taulukko.
      * @param tyyppi Luolan ulkonäköön vaikuttava parametri.
      * @return Palauttaa muokatun taulukon.
@@ -59,7 +61,6 @@ public class Soluautomaatti {
         
     /**
      * Laskee montako pistettä pisteen x,y ympärillä on.
-     * 
      * @param y Pisteen y taulukossa.
      * @param x Pisteen x taulukossa.
      * @param pisteet Tarkisteltava taulukko
@@ -83,6 +84,11 @@ public class Soluautomaatti {
         return seinat;
     }
     
+    /**
+     * Siivoaa luolan pienistä seinistä.
+     * @param pisteet Luolan taulukko.
+     * @return Luolan taulukko.
+     */
     public int[][]siivous(int[][]pisteet) {
         for (int i = 0; i < pisteet.length; i++) {
             for (int j = 0; j < pisteet[0].length; j++) {

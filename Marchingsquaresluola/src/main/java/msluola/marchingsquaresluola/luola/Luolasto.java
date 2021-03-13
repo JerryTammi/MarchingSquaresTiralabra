@@ -10,24 +10,22 @@ public class Luolasto {
     int korkeus;
     int leveys;
     int vali;
-    boolean onnistuuko;
     
     /**
      * Pitää yllä luolien joukkoa.
-     * @param n montako luolaa luolastoon
+     * @param n Montako luolaa luolastoon.
      */
     public Luolasto(int n) {
         this.n = n;
         lista = new Lista(1);
         index = 0;
-        onnistuuko = true;
     }
     
     /**
-     * Alustaa luolan näyttöä varten
-     * @param korkeus jokaisen luolan korkeus
-     * @param leveys jokaisen luolan leveys
-     * @param vali algoritmeihin tarvittava luku, joka määrittää mm. kuinka tiheästi seinät ovat pakattu
+     * Alustaa luolan näyttöä varten.
+     * @param korkeus Jokaisen luolan korkeus.
+     * @param leveys Jokaisen luolan leveys.
+     * @param vali Algoritmeihin tarvittava luku, joka määrittää mm. kuinka tiheästi seinät ovat pakattu.
      */
     public void luoLuolasto(int korkeus, int leveys, int vali) {
         this.korkeus = korkeus;
@@ -44,8 +42,8 @@ public class Luolasto {
     
     /**
      * Generoi uuden luolan.
-     * @param kumpi valitaan luolan tyyppi
-     * @return uusi luola
+     * @param tyyppi valitaan luolan tyyppi
+     * @return Uusi luola.
      */
     public Luola uusiLuola(int tyyppi) {
         int[]seed = lista.palautaOsio(index);
@@ -54,11 +52,17 @@ public class Luolasto {
         index++;
         return luola;
     }
-        
+    
+    /**
+     * @return Paluttaa listan täynnä luolia.
+     */
     public Lista haeLista() {
         return lista;
     }
     
+    /**
+     * @return Paluttaa luolaston indexin.
+     */
     public int haeIndex() {
         return index;
     }

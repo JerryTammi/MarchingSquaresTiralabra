@@ -1,11 +1,18 @@
 package msluola.marchingsquaresluola.util;
 
+/**
+ * Lista, jota käytetään luolien generoimisessa. Sopii ainoastaan numeroiden säilytykseen.
+ */
 public class Lista {
     int[][]lista;
     int n;
     int koko;
     int index;
     
+    /**
+     * Listan koko on alussa 8.
+     * @param n Listalle lisättävän numerosarjan koko. 
+     */
     public Lista(int n) {
         this.n = n;
         index = 0;
@@ -13,6 +20,10 @@ public class Lista {
         lista = new int[koko][n];
     }
     
+    /**
+     * Lisätään listalle numerosarjoja. Jos lista on täynnä eikä maksimikokoa ole ylitetty, listan koko tuplataan.
+     * @param t Listalle lisättävä numerosarja. 
+     */
     public void add(int[]t) {
         if (index == koko - 1) {
             koko = 2 * koko;
@@ -37,7 +48,12 @@ public class Lista {
         index++;
     }
     
-    
+    /**
+     * Lista järjestetään halutessa pikajärjestysalgoritmilla.
+     * @param a Järjestettävän listan ensimmäinen alkio.
+     * @param b Järjestettävän listan viimeinen alkio.
+     * @param i Listaan tallenetun numerosarjan järjestettävä osio.
+     */
     public void jarjesta(int a, int b, int i) {
         if (i > n) {
             return;
@@ -50,6 +66,13 @@ public class Lista {
         jarjesta(k + 1, b, i);
     }
     
+    /**
+     * Hoitaa pikajärjestämisessä alkioiden siirtämisen oikeaan järjestykseen. 
+     * @param a Järjestettävän listan ensimmäinen alkio.
+     * @param b Järjestettävän listan viimeinen alkio.
+     * @param i Listaan tallenetun numerosarjan järjestettävä osio.
+     * @return Jakoalkio.
+     */
     public int jako(int a, int b, int i) {
         int k = a;
         for (int missa = a + 1; missa <= b; missa++) {
@@ -66,10 +89,17 @@ public class Lista {
         return k;
     }
     
+    /**
+     * @param i Halutun numerosarjan indeksi.
+     * @return Palauttaa halutun numerosarjan.
+     */
     public int[] palautaOsio(int i) {
         return lista[i];
     }
         
+    /**
+     * @return Palauttaa listan viimeisimmän alkion indeksin.
+     */
     public int haeIndex() {
         if (index == 0) {
             return 0;
@@ -77,7 +107,9 @@ public class Lista {
         return index - 1;
     }
     
-    
+    /**
+     * Tulostaa listan.
+     */
     public void tulosta() {
         for (int i = 0; i < index; i++) {
             for (int j = 0; j < lista[0].length; j++) {

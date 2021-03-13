@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import msluola.marchingsquaresluola.luola.Luola;
 import msluola.marchingsquaresluola.luola.Luolasto;
 
+/**
+ * Vastaa ohjelman ulkonäöstä ja luolien generoimisesta.
+ */
 public class LuolaGui {
     Stage stage;
     Scene luolaScene;
@@ -27,12 +30,20 @@ public class LuolaGui {
     int n;
     int tyyppi;
     
+    /**
+     * @param stage Tarvitaan oikean ikkunan määrityksessä
+     */
     public LuolaGui(Stage stage) {
+        stage.setTitle("Marching squares");
         this.stage = stage;
         tyyppi = 2;
         alustaAlkutoimet();
     }
     
+    /**
+     * Huolehtii Luolan määritykseen tarvittavista kompnonenteista.
+     * @return Palauttaa asetusten scenen.
+     */
     public Scene alustaAlkutoimet() {
         AnchorPane rootAsetukset = new AnchorPane();
         TextField luolienMaaraMaaritysTf = new TextField("100");
@@ -72,6 +83,7 @@ public class LuolaGui {
             String luolienLukumaara = luolienMaaraMaaritysTf.getText();
             String luolanLeveys =luolanLeveysTf.getText();
             String luolanKorkeus =luolanKorkeusTf.getText();
+            
             char[]charsLuolienLukumaara = luolienLukumaara.toCharArray();
             char[]charsLuolanLeveys = luolanLeveys.toCharArray();
             char[]charsLuolanKorkeus = luolanKorkeus.toCharArray();
@@ -114,13 +126,13 @@ public class LuolaGui {
             }
             
             if (!virhe) {
-                if (Integer.parseInt(luolanLeveys) > 1920 || Integer.parseInt(luolanLeveys) < 500) {
+                if (Integer.parseInt(luolanLeveys) > 2560 || Integer.parseInt(luolanLeveys) < 500) {
                     virhe = true;
-                    System.out.println("Luolan leveyden minimiarvo on 500 ja maksimiarvo on 1920.");
+                    System.out.println("Luolan leveyden minimiarvo on 500 ja maksimiarvo on 2560.");
                 }
-                if (Integer.parseInt(luolanKorkeus) > 1000 || Integer.parseInt(luolanKorkeus) < 500) {
+                if (Integer.parseInt(luolanKorkeus) > 1440 || Integer.parseInt(luolanKorkeus) < 500) {
                     virhe = true;
-                    System.out.println("Luolan korkeuden minimiarvo on 500 ja maksimiarvo on 1000.");
+                    System.out.println("Luolan korkeuden minimiarvo on 500 ja maksimiarvo on 1440.");
                 }
             }
             
@@ -148,6 +160,13 @@ public class LuolaGui {
         return asetusScene;
     }
     
+    /**
+     * Huolehtii luolaston generoimisesta.
+     * @param n Montako luolaa generoidaan.
+     * @param korkeus Yksittäisen luolan korkeus.
+     * @param leveys Yksittäisen luolan leveys.
+     * @param vali Yksittäisen luolan pisteiden väli.
+     */
     public void luoLuolastoUi(int n, int korkeus, int leveys, int vali) {
         this.n = n;
         rootLuola = new AnchorPane();
@@ -159,6 +178,13 @@ public class LuolaGui {
         rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene(leveys, korkeus));
     }
     
+    /**
+     * Utilityscenen avulla voidaan esittää seuraava luolaa, palata asetuksiin, tulostaa luolaa ja esittää 
+     * luolan pisteet.
+     * @param leveys Utilityscenen leveys.
+     * @param korkeus Utilityscenen korkeus.
+     * @return Paluttaa valmiin utilityscenen.
+     */
     public SubScene utilityScene(int leveys, int korkeus) {
         Pane utility = new Pane();
         utility.setLayoutX(35);
@@ -212,6 +238,11 @@ public class LuolaGui {
         return s;
     }
     
+    /**
+     * Slider utilitysceneen.
+     * @param missa Aloituskohta.
+     * @return Paluttaa valmiin sliderin.
+     */
     public Slider haeSlider(int missa) {
         Slider slider = new Slider(1, 3, missa);
         slider.setMajorTickUnit(1);
@@ -220,6 +251,9 @@ public class LuolaGui {
         return slider;
     }
     
+    /**
+     * @return Paluttaa asetuscenen.
+     */
     public Scene haeAsetusScene() {
         return asetusScene;
     }

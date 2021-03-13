@@ -12,8 +12,7 @@ import msluola.marchingsquaresluola.util.LehmerRng;
 import msluola.marchingsquaresluola.util.Mst;
 
 /**
- *
- * Luokka generoi luolan annetusta taulukosta käyttäen Marching squares -algoritmia
+ * Luokka generoi luolan annetusta taulukosta käyttäen Marching squares -algoritmia.
  */
 public class Luola {
     Pane ikkuna;
@@ -25,11 +24,10 @@ public class Luola {
     int tyyppi;
     
     /**
-     *
-     * @param leveys Ikkunan leveys
-     * @param korkeus Ikkunan korkeus
+     * @param leveys Ikkunan leveys.
+     * @param korkeus Ikkunan korkeus.
      * @param vali Jokaisen algoritmissa käytettävän pisteen välin etäisyyden toisiinsa.
-     * @param seed Luolan oma seed
+     * @param seed Luolan oma seed.
      * @param tyyppi Vaikuttaa luolan ulkonäköön. Kolme mahdollista vaihtoehtoa.
      */
     public Luola(int korkeus, int leveys, int vali, long seed, int tyyppi) {
@@ -44,7 +42,6 @@ public class Luola {
     }
     
     /**
-     * 
      * Metodi luo taulukon, jonka avulla se generoi luolan.
      */
     public void luoTaulukko() {
@@ -62,7 +59,7 @@ public class Luola {
     /**
      * Lisää pisteet paneen.Ohjelman valmistuttua tämä metodi ei tule olemaan käytössä.Tällä hetkellä
         auttaa visualisoimaan algoritmia.
-     * @param a anchorpane jossa pisteet halutessa esitetään
+     * @param a Anchorpane, jossa pisteet halutessa esitetään.
      */
     public void lisaaPisteet(AnchorPane a) {
         for (int i = 0; i < pisteet.length; i++) {
@@ -79,7 +76,6 @@ public class Luola {
     }
     
     /**
-     * 
      * Metodi käy läpi pisteet -taulukon, luo binäärinumeron tiedon mukaan ja muuntaa sen tavalliseksi
      * numeroksi.Tämän jälkeen se valitsee 16 mahdollisesta vaihtoehdosta ainoan sopivan, luo seinän ja 
         lopuksi lisää sen paneen.
@@ -90,8 +86,8 @@ public class Luola {
     }
     
     /**
- * Palauttaa valmiiksi alustetun luolan näyttöä varten
-     * @return scene luolan esitystä varten
+     * Palauttaa valmiiksi alustetun luolan näyttöä varten.
+     * @return scene luolan esitystä varten.
      */
     public SubScene luoLuola() {
         luoTaulukko();
@@ -115,7 +111,6 @@ public class Luola {
     }
     
     /**
-     *
      * @return Palauttaa valmiin panen ohjelmaa varten.
      */
     public Pane haePane() {
@@ -123,7 +118,6 @@ public class Luola {
     }
     
     /**
-     *
      * @return Palauttaa ikkunan leveyden.
      */
     public int haeLeveys() {
@@ -131,7 +125,6 @@ public class Luola {
     }
     
     /**
-     *
      * @return Palauttaa ikkunan korkeuden.
      */
     public int haeKorkeus() {
@@ -139,7 +132,6 @@ public class Luola {
     }
     
     /**
-     *
      * @return Palauttaa pisteiden välin etäisyyden.
      */
     public int haeVali() {
@@ -147,23 +139,21 @@ public class Luola {
     }
     
     /**
-     * Muistaa oman numeron
-     * @param seed Luolan numero
+     * Muistaa oman seedin.
+     * @param seed Luolan seed.
      */
     public void asetaOmaSeed(long seed) {
         omaSeed = seed;
     }
     
     /**
-     * 
-     * @return Hakee oman numeron
+     * @return Hakee oman seedin.
      */
     public long haeOmaSeed() {
         return omaSeed;
     }
     
     /**
-     * 
      * @return Palauttaa taulukon.
      */
     public int[][] haeTaulukko() {
@@ -172,7 +162,7 @@ public class Luola {
     
     /**
      * Asettaa taulukon.
-     * @param taulu Luolan taulu
+     * @param taulu Luolan taulu.
      */
     public void asetaTaulukko(int[][]taulu) {
         this.pisteet = taulu;
