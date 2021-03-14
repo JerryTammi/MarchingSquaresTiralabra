@@ -11,6 +11,7 @@
 * Mst: Luokka yhdistää luolan huoneet Kruskalin algoritmilla
 * Soluautomaatti: Muuntaa randmosti luodun taulukon suljetuiksi huoneiksi
 * Unionfind: Käytetään Mst -luokassa luolan huoneiden yhdistämiseen 
+* Lista: Oma listarakenne, joka soveltuu erikokoisten taulukoiden (int) säilytykseen.
   
 #### Luola
 * Luola: Vastaa luolan generoimisesta ja tiedon talennuksesta  
@@ -27,6 +28,13 @@
 
 ### Puutteet ja parannusehdotukset
 
-Suurin virhe oli ohjelman koodaaminen ilman kunnon suunnitelmaa tai ideaa mihin halusi viedä ohjelman.  
+Suurin virhe oli ohjelman koodaaminen ilman kunnon suunnitelmaa tai ideaa mihin olisin halunnut viedä ohjelman. Luolan generoiminen toimii kuten pitää, mutta jos pitäisi jotain lisätä niin aloitus- ja  lopetuspisteet ja esim. a*:lla lyhyin reitti niiden välillä. Saatan palata tähän jossain vaiheessa ja koodata tämän javan omilla tietorakenteilla. 
 
 ### Lähteet
+- https://www.youtube.com/watch?v=yOgIncKp0BE
+- https://en.wikipedia.org/wiki/Marching_squares
+- https://www.reddit.com/r/gamedev/comments/dx95df/cave_generation_using_bsp_and_cellular_automaton/
+- https://gamedevelopment.tutsplus.com/tutorials/generate-random-cave-levels-using-cellular-automata--gamedev-9664
+- https://en.wikipedia.org/wiki/Lehmer_random_number_generator
+- Tirakirja
+
