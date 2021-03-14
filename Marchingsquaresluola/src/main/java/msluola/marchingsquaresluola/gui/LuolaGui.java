@@ -81,8 +81,8 @@ public class LuolaGui {
         
         luolienMaaraMaaritysNappi.setOnAction(e -> {
             String luolienLukumaara = luolienMaaraMaaritysTf.getText();
-            String luolanLeveys =luolanLeveysTf.getText();
-            String luolanKorkeus =luolanKorkeusTf.getText();
+            String luolanLeveys = luolanLeveysTf.getText();
+            String luolanKorkeus = luolanKorkeusTf.getText();
             
             char[]charsLuolienLukumaara = luolienLukumaara.toCharArray();
             char[]charsLuolanLeveys = luolanLeveys.toCharArray();
