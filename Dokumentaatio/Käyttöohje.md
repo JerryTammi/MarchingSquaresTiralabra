@@ -10,7 +10,7 @@ tai generoimalla uusi jar-tiedosto:
 ```
 mvn package
 ```
-joka löytyy target -kansiosta.  Toinen vaihtoehto on ldata pelkkä jar-tiedosto release:ista
+joka löytyy target -kansiosta.  Toinen vaihtoehto on ladata pelkkä jar-tiedosto release:ista
 
 #### Luolan määrittely
 
