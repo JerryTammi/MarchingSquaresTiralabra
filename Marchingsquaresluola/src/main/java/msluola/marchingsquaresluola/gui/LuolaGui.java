@@ -189,7 +189,6 @@ public class LuolaGui {
         Pane utility = new Pane();
         utility.setLayoutX(35);
         utility.setLayoutY(25);
-        
         Button seuraavaLuolaNappi = new Button("Seuraava luola");
         Button luolaPisteet = new Button("Näytä pisteet");
         Button tulostaLuola = new Button("Tulosta luola");
@@ -201,8 +200,13 @@ public class LuolaGui {
         palaaAsetuksiin.setLayoutX(10);
         tyyppiSlider.setLayoutY(tulostaLuola.getLayoutY() + 50);
         tyyppiSlider.setLayoutX(tyyppiSlider.getLayoutX() - 10);
-        
-        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet, tyyppiSlider, tulostaLuola, palaaAsetuksiin);
+        TextField seedTf = new TextField(Long.toString(nykyinenLuola.haeOmaSeed()));
+        seedTf.setLayoutY(tyyppiSlider.getLayoutY() + 50);
+        seedTf.setLayoutX(seedTf.getLayoutX() - 20);
+        seedTf.setPrefWidth(150);
+        Button seuraavaLuolaOmallaSeed = new Button("Näytä seed");
+        seuraavaLuolaOmallaSeed.setLayoutY(seedTf.getLayoutY() + 50);
+        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet, tyyppiSlider, tulostaLuola, palaaAsetuksiin, seedTf, seuraavaLuolaOmallaSeed);
         
         SubScene s = new SubScene(utility, 200, korkeus);
         s.setLayoutX(leveys);
@@ -234,6 +238,23 @@ public class LuolaGui {
             Scene uudetAsetukset = alustaAlkutoimet();
             stage.setScene(uudetAsetukset);
             stage.centerOnScreen();
+        });
+        seuraavaLuolaOmallaSeed.setOnAction(e -> {
+            char[] seedTfTulos = seedTf.getText().toCharArray();
+            tyyppi = (int) tyyppiSlider.getValue();
+            boolean onkoNumero = true;
+            for (int i = 0; i < seedTfTulos.length; i++) {
+                if (!Character.isDigit(seedTfTulos[i])) {
+                            onkoNumero = false;
+                }
+            }
+            if (onkoNumero && seedTfTulos.length <= 10) {
+                int seed = Integer.parseInt(seedTf.getText());
+                Luola uusiLuola = new Luola(luolasto.haeKorkeus(), luolasto.haeLeveys(), luolasto.haeVali(), (long)seed, tyyppi);
+                nykyinenLuola = uusiLuola;
+                rootLuola.getChildren().clear();
+                rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene(leveys, korkeus));
+            }
         });
         return s;
     }

@@ -34,7 +34,7 @@ public class Luolasto {
         LehmerRng rand = new LehmerRng(System.nanoTime() % 1337);
         long edellinen = 0;
         for (int i = 0; i < n; i++) {
-            Long seed = rand.lehmer() % 10000;
+            Long seed = rand.lehmer() % 10000000;
             int luku = seed.intValue();
             lista.add(new int[]{luku});
         }
@@ -65,5 +65,26 @@ public class Luolasto {
      */
     public int haeIndex() {
         return index;
+    }
+    
+    /**
+     * @return Luolan korkeus.
+     */
+    public int haeKorkeus() {
+        return korkeus;
+    }
+    
+    /**
+     * @return Luolan leveys.
+     */
+    public int haeLeveys() {
+        return leveys;
+    }
+    
+    /**
+     * @return Luolan pisteiden väli.
+     */
+    public int haeVali() {
+        return vali;
     }
 }
