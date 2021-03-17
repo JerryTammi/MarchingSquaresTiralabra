@@ -2,6 +2,8 @@
 
 Ohjelma koodattu Java 8:lla.
 
+17.3 Lisätty seed:ille määrityspainike
+
 ## Dokumentaatio
 
 [Määrittelydokumentti](https://github.com/JerryTammi/MarchingSquaresTiralabra/blob/main/Dokumentaatio/M%C3%A4%C3%A4rittelydokumentti.md)
