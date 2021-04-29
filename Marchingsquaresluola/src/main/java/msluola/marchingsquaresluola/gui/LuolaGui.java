@@ -1,5 +1,6 @@
 package msluola.marchingsquaresluola.gui;
 
+import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
@@ -7,10 +8,14 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import msluola.marchingsquaresluola.luola.Luola;
 import msluola.marchingsquaresluola.luola.Luolasto;
+import msluola.marchingsquaresluola.util.AStar;
+import msluola.marchingsquaresluola.util.Node;
 
 /**
  * Vastaa ohjelman ulkonäöstä ja luolien generoimisesta.
@@ -27,6 +32,7 @@ public class LuolaGui {
     AnchorPane rootLuola;
     boolean saakoLisataPisteet;
     boolean saakoTulostaa;
+    boolean muodostetaankoReitti;
     int n;
     int tyyppi;
     
@@ -206,7 +212,11 @@ public class LuolaGui {
         seedTf.setPrefWidth(150);
         Button seuraavaLuolaOmallaSeed = new Button("Näytä seed");
         seuraavaLuolaOmallaSeed.setLayoutY(seedTf.getLayoutY() + 50);
-        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet, tyyppiSlider, tulostaLuola, palaaAsetuksiin, seedTf, seuraavaLuolaOmallaSeed);
+        Button naytaReitti = new Button("A*");
+        naytaReitti.setLayoutY(seuraavaLuolaOmallaSeed.getLayoutY() + 50);
+        Text pisteetPuuttuvat = new Text("Pisteet puuttuvat.");
+        utility.getChildren().addAll(seuraavaLuolaNappi, luolaPisteet, tyyppiSlider,
+                tulostaLuola, palaaAsetuksiin, seedTf, seuraavaLuolaOmallaSeed, naytaReitti);
         
         SubScene s = new SubScene(utility, 200, korkeus);
         s.setLayoutX(leveys);
@@ -256,6 +266,38 @@ public class LuolaGui {
                 rootLuola.getChildren().addAll(nykyinenLuola.luoLuola(), utilityScene(leveys, korkeus));
             }
         });
+        
+        // A* -reitinhaku
+        ArrayList<Node>reitinPisteet = new ArrayList<>();
+        nykyinenLuola.haePane().setOnMousePressed(e -> {
+            if (reitinPisteet.size() < 2) {
+                int pisteX = laskeLahinPiste(e.getX() / nykyinenLuola.haeVali());
+                int pisteY = laskeLahinPiste(e.getY() / nykyinenLuola.haeVali());
+                if (nykyinenLuola.haeTaulukko()[pisteY][pisteX] == 0) {
+                   Circle c = new Circle(e.getX(), e.getY(), 5);
+                   if (reitinPisteet.size() == 0) {
+                       c.setFill(Color.BLUE);
+                   }
+                   else {
+                       c.setFill(Color.RED);
+                   }
+                   nykyinenLuola.haePane().getChildren().add(c);
+                   reitinPisteet.add(new Node(pisteY, pisteX));
+                }
+            }
+        });
+        muodostetaankoReitti = true;
+        naytaReitti.setOnAction(e -> {
+            if (muodostetaankoReitti && reitinPisteet.size() < 2 && !utility.getChildren().contains(pisteetPuuttuvat)) {
+                pisteetPuuttuvat.setLayoutY(naytaReitti.getLayoutY() + 50);
+                utility.getChildren().add(pisteetPuuttuvat);
+            }
+            if (muodostetaankoReitti && reitinPisteet.size() == 2) {
+                AStar as = new AStar();
+                as.haku(reitinPisteet.get(0), reitinPisteet.get(1), nykyinenLuola);
+                muodostetaankoReitti = false;
+            }
+        });
         return s;
     }
     
@@ -277,5 +319,13 @@ public class LuolaGui {
      */
     public Scene haeAsetusScene() {
         return asetusScene;
+    }
+    
+    public int laskeLahinPiste(double piste) {
+        double jakojaannos = piste % 1;
+        if (jakojaannos < 0.5) {
+            return (int)piste;
+        }
+        else return (int)piste + 1;
     }
 }

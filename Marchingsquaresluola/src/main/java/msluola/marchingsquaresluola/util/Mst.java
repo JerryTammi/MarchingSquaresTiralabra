@@ -132,44 +132,44 @@ public class Mst {
         if (yAloitus <= yLoppu) {
             for (int i = yAloitus; i <= yLoppu; i++) {
                 pisteet[i][xAloitus] = 0;
-                if (rndMuutos() && xAloitus > 1) {
-                    pisteet[i][xAloitus - 1] = 0;
-                }
-                if (rndMuutos() && xAloitus < pisteet[0].length - 2) {
-                    pisteet[i][xAloitus + 1] = 0;
-                }
+//                if (rndMuutos() && xAloitus > 1) {
+//                    pisteet[i][xAloitus - 1] = 0;
+//                }
+//                if (rndMuutos() && xAloitus < pisteet[0].length - 2) {
+//                    pisteet[i][xAloitus + 1] = 0;
+//                }
             }
         } else {
             for (int i = yLoppu; i <= yAloitus; i++) {
                 pisteet[i][xAloitus] = 0;
-                if (rndMuutos() && xAloitus > 1) {
-                    pisteet[i][xAloitus - 1] = 0;
-                }
-                if (rndMuutos() && xAloitus < pisteet[0].length - 2) {
-                    pisteet[i][xAloitus + 1] = 0;
-                }
+//                if (rndMuutos() && xAloitus > 1) {
+//                    pisteet[i][xAloitus - 1] = 0;
+//                }
+//                if (rndMuutos() && xAloitus < pisteet[0].length - 2) {
+//                    pisteet[i][xAloitus + 1] = 0;
+//                }
             }
         }
         
         if (xAloitus <= xLoppu) {
             for (int i = xAloitus; i <= xLoppu; i++) {
                 pisteet[yLoppu][i] = 0;
-                if (rndMuutos() && yAloitus > 1) {
-                    pisteet[yLoppu - 1][i] = 0;
-                }
-                if (rndMuutos() && yAloitus < pisteet.length - 2) {
-                    pisteet[yLoppu + 1][i] = 0;
-                }
+//                if (rndMuutos() && yAloitus > 1) {
+//                    pisteet[yLoppu - 1][i] = 0;
+//                }
+//                if (rndMuutos() && yAloitus < pisteet.length - 2) {
+//                    pisteet[yLoppu + 1][i] = 0;
+//                }
             }
         } else {
             for (int i = xLoppu; i <= xAloitus; i++) {
                 pisteet[yLoppu][i] = 0;
-                if (rndMuutos() && yAloitus > 1) {
-                    pisteet[yLoppu - 1][i] = 0;
-                }
-                if (rndMuutos() && yAloitus < pisteet.length - 2) {
-                    pisteet[yLoppu + 1][i] = 0;
-                }
+//                if (rndMuutos() && yAloitus > 1) {
+//                    pisteet[yLoppu - 1][i] = 0;
+//                }
+//                if (rndMuutos() && yAloitus < pisteet.length - 2) {
+//                    pisteet[yLoppu + 1][i] = 0;
+//                }
             }
         }
     }
