@@ -2,7 +2,9 @@
 
 Ohjelma koodattu Java 8:lla.
 
-17.3 Lisätty seed:ille määrityspainike
+17.3.21 Lisätty seed:ille määrityspainike
+
+29.4.21 Lisätty A* reitinhakualgoritmi
 
 ## Dokumentaatio
 
