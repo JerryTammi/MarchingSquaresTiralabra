@@ -274,8 +274,8 @@ public class LuolaGui {
                 int pisteX = laskeLahinPiste(e.getX() / nykyinenLuola.haeVali());
                 int pisteY = laskeLahinPiste(e.getY() / nykyinenLuola.haeVali());
                 if (nykyinenLuola.haeTaulukko()[pisteY][pisteX] == 0) {
-                   Circle c = new Circle(e.getX(), e.getY(), 5);
-                   if (reitinPisteet.size() == 0) {
+                   Circle c = new Circle(pisteX * nykyinenLuola.haeVali(), pisteY * nykyinenLuola.haeVali(), 5);
+                   if (reitinPisteet.isEmpty()) {
                        c.setFill(Color.BLUE);
                    }
                    else {
