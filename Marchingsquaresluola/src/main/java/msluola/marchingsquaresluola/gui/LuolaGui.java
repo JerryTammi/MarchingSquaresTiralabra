@@ -249,6 +249,7 @@ public class LuolaGui {
             stage.setScene(uudetAsetukset);
             stage.centerOnScreen();
         });
+        
         seuraavaLuolaOmallaSeed.setOnAction(e -> {
             char[] seedTfTulos = seedTf.getText().toCharArray();
             tyyppi = (int) tyyppiSlider.getValue();
@@ -294,7 +295,7 @@ public class LuolaGui {
             }
             if (muodostetaankoReitti && reitinPisteet.size() == 2) {
                 AStar as = new AStar();
-                as.haku(reitinPisteet.get(0), reitinPisteet.get(1), nykyinenLuola);
+                as.reittiHaku(reitinPisteet.get(0), reitinPisteet.get(1), nykyinenLuola);
                 muodostetaankoReitti = false;
             }
         });

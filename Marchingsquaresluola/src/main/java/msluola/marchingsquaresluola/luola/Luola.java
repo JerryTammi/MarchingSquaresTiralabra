@@ -48,9 +48,11 @@ public class Luola {
         LehmerRng rng = new LehmerRng(pisteet, omaSeed);
         pisteet = rng.luoTaulu();
         Soluautomaatti sa = new Soluautomaatti();
+        
         for (int i = 0; i < 10; i++) {
             pisteet = sa.muunna(pisteet, tyyppi);
         }
+        
         Mst m = new Mst(pisteet);
         pisteet = m.linkita();
         pisteet = sa.siivous(pisteet);

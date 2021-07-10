@@ -1,5 +1,6 @@
 package msluola.marchingsquaresluola.util;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import javafx.scene.shape.Line;
@@ -20,7 +21,7 @@ public class AStar {
      * @param loppu Päätöspiste.
      * @param luola Tarkisteltava luola.
      */    
-    public void haku(Node alku, Node loppu, Luola luola) {
+    public void reittiHaku(Node alku, Node loppu, Luola luola) {
         this.alku = alku;
         this.loppu = loppu;
         this.cameFrom = new ArrayList<>();
@@ -120,8 +121,25 @@ public class AStar {
         if (n.getParent() == null) {
             return;
         }
-        Line l = new Line(n.getX() * luola.haeVali(), n.getY() * luola.haeVali(), n.getParent().getX() * luola.haeVali(), n.getParent().getY() * luola.haeVali());
-        luola.haePane().getChildren().add(l);
-        nodeParentPoints(n.getParent());
+        Node parent = n.getParent();
+        if (parent.getParent() != null) {
+            Node parentsParent = parent.getParent();
+            if (Math.abs(n.getX() - parentsParent.getX()) == 1 && Math.abs(n.getY() - parentsParent.getY()) == 1) {
+                Line l = new Line(n.getX() * luola.haeVali(), n.getY() * luola.haeVali(), parentsParent.getX() * luola.haeVali(), parentsParent.getY() * luola.haeVali());
+                l.setStyle("-fx-stroke: red;");
+                luola.haePane().getChildren().add(l);
+                nodeParentPoints(parentsParent);
+            } else {
+                Line l = new Line(n.getX() * luola.haeVali(), n.getY() * luola.haeVali(), n.getParent().getX() * luola.haeVali(), n.getParent().getY() * luola.haeVali());
+                l.setStyle("-fx-stroke: red;");
+                luola.haePane().getChildren().add(l);
+                nodeParentPoints(n.getParent());
+            }
+        } else {
+            Line l = new Line(n.getX() * luola.haeVali(), n.getY() * luola.haeVali(), n.getParent().getX() * luola.haeVali(), n.getParent().getY() * luola.haeVali());
+            l.setStyle("-fx-stroke: red;");
+            luola.haePane().getChildren().add(l);
+            nodeParentPoints(n.getParent());
+        }
     }
 }
